@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/libs/excanvas.min.js"></script><![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Feedback</title>
+    <link rel="stylesheet" href="css/jquery.jqplot.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+          body {padding-top: 50px;}
+        </style>
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <script type="text/x-handlebars" data-template-name="application">
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Song Feedback</a>
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li>{{#linkTo browse}} Browse {{/linkTo}}</li>
+                {{#if fullName}}
+                <li>{{#linkTo user this}}My Feedback {{/linkTo}}</li>
+                {{/if}}
+              </ul>
+              <form class="navbar-search pull-left">
+                <input type="text" class="search-query" placeholder="Search">
+              </form>
+              <ul class="nav  pull-right">
+                {{#if fullName}}
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {{fullName}}
+                      <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Settings</a></li>
+                      <li><a href="#">Upload Song</a></li>
+                      <li><a href="#">Sign out</a></li>
+                    </ul>
+                  </li>
+                {{else}}
+                  <li><a href="#">Sign In</a></li>
+                {{/if}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">{{outlet}}</div>
+    </script>  
+    
+    <script type="text/x-handlebars" data-template-name="index">          
+      <div class="jumbotron">
+        <h1>Song Feedback</h1>
+        <div class="lead">Finally get unbiased feedback on your music!</div>
+        <a class="btn btn-large btn-primary" href="#">Sign Up</a>
+        <small> (its totally free!) </small>
+      </div>
+      <div class="container-fluid">        
+        <div class="row-fluid">
+          <div class="span4 offset1">
+            <h2>Improve your craft</h2>
+            <p>Find out if you truly have a great song, or if your mother has been lying to you. Song Feedback aims to give musicians constructive criticism to help smooth out the kinks and fuel the creativity needed to take your music to the next level.</p>
+            <p><a class="btn" href="#">Upload Your Song</a></p>
+          </div>
+          <div class="span4 offset2">
+            <h2>Help your community</h2>
+            <p>Song Feedback is a community, so you must give feedback in order to recieve feedback. You earn uploads by contributing feedback to other artists songs. </p>
+            <p><a class="btn" href="#">Browse Songs</a></p>
+         </div>
+        </div>
+        <hr>
+        <div class="footer">
+          <p>&copy; Song Feedback 2013</p>
+        </div>
+      </div>
+    </script>   
+    
+    <script type="text/x-handlebars" data-template-name="songs">
+      <div class="row-fluid">
+        <h2>Browse Songs</h2>
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#" {{action recent}}>Recent</a></li>
+          <li><a href="#" {{action leastRated}}>Least Rated</a></li>
+          <li><a href="#">Top Rated</a></li>
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              Genre
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#about">Rock/Pop</a></li>
+              <li><a href="#about">Rap/Hip Hop</a></li>
+              <li><a href="#about">Country</a></li>
+              <li><a href="#about">Indie/Alt</a></li>
+            </ul>
+          </div>
+        </ul>
+        
+      </div>
+    {{ partial "song-list"}}
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="song">
+      <div class="row-fluid">
+        <h3 class="no-bottom-margin">{{name}} <small>{{artist}}</small></h3>
+        <p class="thin-text">{{description}}</p>
+      </div>
+      <div class="row-fluid">
+        <div class="span6 charts">
+          
+          <div class="chart-container-full hidden-desktop">
+            {{partial "bar-graph"}}
+          </div>
+          <div class="chart-container visible-desktop">
+            {{partial "bar-graph"}}
+          </div>
+          <div class="pie-container">
+            <div id="balance-pie"></div> 
+          </div> 
+        </div>
+        <div class="span6">
+        <h3>Comments</h3>
+        {{#each comment in comments}}
+        <blockquote>  
+          <p>{{comment.message}}</p>
+          <small>{{comment.user.fullName}} on {{comment.date}}</small>
+        </blockquote>
+        {{/each}}
+        </div>
+      </div>
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="user">
+      <div class="row-fluid">
+        <h3 class="no-bottom-margin">{{fullName}}</h3>
+        <p class="thin-text">{{description}}</p>
+      </div>
+      <div class="row-fluid">
+      {{#each song in songs}}
+        <div class="row-fluid song-list-item-container">
+          <div class="song-list-item">
+            <div class="span5">
+              <h4>{{#linkTo song song}}{{song.name}}{{/linkTo}} <small>{{song.artist}}</small></h4>
+              <p class="hidden-phone">{{song.description}}</p>  
+            </div>
+            <div class="span5 hidden-phone">
+              <h4><small>Overall Average: </small>{{song.overall}}</h4>
+              <h5><small>Total Reviews: </small>{{song.reviewCount}} <small>Total Comments: </small>{{song.commentCount}}</h5> 
+            </div>
+            <div class="span2">      
+              <div class="hidden-phone float-right">
+                <h5>{{song.genre.name}}</h5>
+                <p>{{mdy song.date}}</p>
+              </div>
+              <div class="visible-phone">
+                <h5>{{song.genre.name}} <small>{{mdy song.date}}</small></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+      </div>
+      
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="_bar-graph">     
+      <div id="rating-chart">
+        <div class="chart-title">Average Ratings</div>
+        <div class="bar-label">Overall</div>
+        <div class="graph overall-line">{{bargraph overall}}<div class="bar-value">{{overall}}</div></div>
+        <div class="bar-label">Vocals</div>
+        <div class="graph vocals-line">{{bargraph vocals}}<div class="bar-value">{{vocals}}</div></div>
+        <div class="bar-label">Songwriting</div>
+        <div class="graph songwriting-line">{{bargraph songwriting}}<div class="bar-value">{{songwriting}}</div></div>
+        <div class="bar-label">Musicianship</div>
+        <div class="graph musicianship-line">{{bargraph musicianship}}<div class="bar-value">{{musicianship}}</div></div>
+        <div class="bar-label">Creativity</div>
+        <div class="graph creativity-line">{{bargraph creativity}}<div class="bar-value">{{creativity}}</div></div>
+        <div class="bar-label">Production</div>
+        <div class="graph production-line">{{bargraph production}}<div class="bar-value">{{production}}</div></div>
+      </div> 
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="_song-list">
+    <div class="song-list">
+      {{#each song in controller}}
+      <div class="row-fluid song-list-item-container">
+        <div class="song-list-item">
+          <div class="span10">
+            <h4>{{#linkTo song song}}{{song.name}}{{/linkTo}} <small>{{song.artist}}</small></h4>
+            <p class="hidden-phone">{{song.description}}</p>  
+          </div>
+          <div class="span2">      
+            <div class="hidden-phone float-right">
+              <h5>{{song.genre.name}}</h5>
+              <p>{{mdy song.date}}</p>
+            </div>
+            <div class="visible-phone">
+              <h5>{{song.genre.name}} <small>{{mdy song.date}}</small></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    </script> 
+    
+        
+    <script src="js/libs/jquery-1.8.3.min.js"></script>
+    <script src="js/libs/handlebars-1.0.0.rc.3.js"></script>
+    <script src="js/libs/ember.js"></script>
+    <script src="js/libs/ember-data.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>    
+    <script src="js/libs/jquery.jqplot.min.js"></script>
+    <script src="js/libs/jqplot.pieRenderer.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/mockData.js"></script>
+  </body>
+</html>

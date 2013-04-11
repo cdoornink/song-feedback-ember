@@ -1,0 +1,154 @@
+/*Bootstrap Overrides*/
+h1,h2,h3,h4,h5,h6{
+  font-weight: normal;
+}
+a{
+  color: #7E9396;
+}
+
+/* HEADER */
+.navbar-fixed-top .navbar-inner{
+  background: #7E9396;
+  border-bottom: 1px solid white;
+  box-shadow: 0 2px 0 #FDCF76;
+}
+.navbar .brand{
+  color: white;
+  font-size: 30px;
+  font-weight: 100;
+  text-shadow: none;
+}
+.navbar .nav>li>a {
+  color: white;
+  text-shadow: none;
+}
+
+/* HOME PAGE */
+.jumbotron {
+  position: relative;
+  padding: 40px 0;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+  background: url("/img/audio.png");
+  background-size: 100%;
+}
+.jumbotron h1{
+  font-size: 70px;
+  line-height: 1;
+}
+.jumbotron .lead {
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+/*song lists*/
+.song-list-item{
+  overflow: hidden;
+  padding: 10px 10px 0;
+  margin: 5px 0;
+  border-top: 1px solid #EEE;
+}
+.song-list-item .span10, .song-list-item .span2{
+  min-height: 20px;
+}
+.song-list-item h4, .song-list-item h5{
+  margin: 0;
+  font-weight: normal;
+}
+.song-list-item p{
+  margin: 0;
+  font-size: 16;
+  font-weight: 300;
+}
+.song-list-item-container:first-of-type .song-list-item{
+  border-top: none;
+}
+
+.charts{
+  overflow: hidden;
+}
+.pie-container{
+  width: 50%;
+  min-width: 245px;
+  float: left;
+  text-align: center;
+}
+.chart-container{
+  width: 50%;
+  float: left;
+}
+.chart-container-full{
+  float: left;
+  width: 100%;
+}
+.chart-title{
+  font-size: 17px;
+  margin: 20px 0 15px;
+  color: black;
+}
+#balance-pie{
+  height:320px;
+  width: 280px;
+  margin: 20px 0;
+}
+
+.graph{
+  width: 100%;
+  height: 18px;
+  margin: 0 0 5px;
+  overflow: hidden;
+}
+.bar{
+  background: #CCC;
+  height: 15px;
+  box-shadow: 2px 2px 5px #AAA;
+  float: left;
+}
+.songwriting-line .bar{
+  background: #72C7D4;
+}
+.vocals-line .bar{
+  background: #B2CCD4;
+}
+.musicianship-line .bar{
+  background: #65A8BA;
+}
+.creativity-line .bar{
+  background: #7E9396;
+}
+.production-line .bar{
+  background: #498087;
+}
+.bar-label{
+  font-size: 13px;
+  font-weight: 300;
+}
+.bar-value{
+  float: left;
+  line-height: 15px;
+  font-size: 15px;
+  font-weight: 300;
+  margin: 0 0 0 5px;
+}
+
+#rating-chart{
+  height: 320px;
+  padding-left: 40px;
+  margin: 0 auto 20px;
+}
+
+
+
+.float-right{
+  float: right;
+}
+.float-left{
+  float: left;
+}
+.thin-text{
+  font-weight: 300;
+}
+.no-bottom-margin{
+  margin-bottom: 0;
+}
