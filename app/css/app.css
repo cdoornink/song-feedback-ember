@@ -100,7 +100,7 @@ a{
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
-  background: url("/img/audio.png");
+  background: white;
   background-size: 100%;
 }
 .jumbotron h1{

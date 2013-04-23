@@ -1,0 +1,32 @@
+{{#with controller.content}}
+  <div class="row-fluid">
+    <h3 class="no-bottom-margin">{{name}} <small>{{artist}}</small></h3>
+    <p class="thin-text">{{description}}</p>
+  </div>
+  <div class="row-fluid">
+    <div class="span6 charts"> 
+      {{#if reviews}}
+      <div class="chart-container-full hidden-desktop">
+        {{partial "bar-graph"}}
+      </div>
+      <div class="chart-container visible-desktop">
+        {{partial "bar-graph"}}
+      </div>
+      {{#view SF.PieView}}
+        <div class="pie-container">
+          <div id="balance-pie"></div> 
+        </div> 
+      {{/view}}
+      {{/if}}
+    </div>
+    <div class="span6">
+    <h3>Comments</h3>
+    {{#each comment in comments}}
+      <blockquote>  
+        <p>{{comment.message}}</p>
+        <small>{{comment.user.fullName}} on {{comment.date}}</small>
+      </blockquote>
+    {{/each}}
+    </div>
+  </div>
+{{/with}}

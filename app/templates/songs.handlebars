@@ -1,0 +1,43 @@
+<div class="row-fluid browse-header">
+  <h2 class="pull-left">Browse Songs</h2>
+  <ul class="nav nav-pills browse-nav">
+    <li class="active"><a href="#" {{action recent}}>Recent</a></li>
+    <li><a href="#" {{action leastRated}}>Least Rated</a></li>
+    <li><a href="#">Top</a></li>
+    <div class="btn-group pull-right">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        Genre
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="#about">Rock/Pop</a></li>
+        <li><a href="#about">Rap/Hip Hop</a></li>
+        <li><a href="#about">Country</a></li>
+        <li><a href="#about">Indie/Alt</a></li>
+      </ul>
+    </div>
+  </ul>
+  
+</div>
+<div class="song-list">
+  {{#each song in songs}}
+  <div class="row-fluid song-list-item-container">
+    {{#unless song.reviews}}
+      <div class="new-banner"></div>
+    {{/unless}}
+    <div class="song-list-item">
+      <div class="span6 song-list-left">
+        <div class="sf-play pull-left"><i class="icon-play icon-white"></i></div>
+        <div class="title">{{#linkTo song song}}{{song.name}}{{/linkTo}}</div>
+        <div class="artist">{{song.artist}}</div> 
+      </div>
+      <div class="span3">      
+        <div class="genre">{{song.genre}}</div>
+      </div>
+      <div class="span3">   
+        <div class="date">{{mdy song.date}}</div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
