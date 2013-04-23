@@ -1,8 +1,8 @@
 song-feedback-ember
 ===================
 
-Emberizing the goodness
+Awesome single page application built with Ember.js and coffeescript.
 
-.bin/server to run locally for now
+Custom API hosted on heroku using mongoDb, node.js, and express.
 
-switch to FixtureAdapter to use the Ficture data, working on adding the api in heroku
+If you want to run this locally, you'll need npm and grunt.
