@@ -1,0 +1,56 @@
+.ratings-container
+  margin: 10px
+  border-bottom: 1px solid #444
+  overflow: visible
+  height: 200px
+
+.rating-container
+  float: left
+  width: 25px
+  height: 200px
+  margin: 0 3px
+  position: relative
+  cursor: pointer
+
+.rating-container .rating 
+  height: 15px
+  width: 25px
+  background: black
+  border-radius: 25px 25px 0 0
+  position: absolute
+  bottom: 0
+
+.rating-container .reflection 
+  height: 3px
+  width: 25px
+  background: black
+  border-radius: 0 0 10px 10px
+  position: absolute
+  top: 200px
+  opacity: .1
+
+.rating-container .hoverer
+  position: absolute
+  background: green
+  bottom: 0
+  height: 0
+  width: 100%
+  border-radius: 25px 25px 0 0
+
+.rating.overall, .reflection.overall
+  background: #B2CCD4
+
+.rating.vocals, .reflection.vocals
+  background: #B2CCD4
+
+.rating.songwriting, .reflection.songwriting
+  background: #72C7D4
+
+.rating.musicianship, .reflection.musicianship
+  background: #65A8BA
+
+.rating.creativity, .reflection.creativity
+  background: #7E9396
+
+.rating.production, .reflection.production
+  background: #498087

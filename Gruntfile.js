@@ -19,10 +19,25 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'build/js/app.js': ['app/js/routes.coffee', 'app/js/controllers.coffee', 'app/js/views.coffee', 'app/js/helpers.coffee', 'app/js/data.coffee', 'app/js/models/song.coffee', 'app/js/models/user.coffee']
+          'build/js/app.js': [
+            'app/scripts/routes.coffee', 
+            'app/scripts/controllers.coffee', 
+            'app/scripts/views.coffee', 
+            'app/scripts/helpers.coffee', 
+            'app/scripts/data.coffee', 
+            'app/scripts/models/song.coffee', 
+            'app/scripts/models/user.coffee'
+          ]
         }
       }
     },  
+    sass:{
+      dist: {
+        files : {
+          'build/compiled_sass.css': 'app/styles/app.sass'
+        }
+      }
+    },
     concat: {
       vendor: {
         src: [
@@ -45,10 +60,10 @@ module.exports = function(grunt) {
       },
       styles: {
         src: [
-          'app/css/jquery.jqplot.css',
-          'app/css/bootstrap.css',
-          'app/css/bootstrap-responsive.css',
-          'app/css/app.css'
+          'app/styles/libs/jquery.jqplot.css',
+          'app/styles/libs/bootstrap.css',
+          'app/styles/libs/bootstrap-responsive.css',
+          'build/compiled_sass.css'
         ],
         dest: 'build/css/app.css'
       }
@@ -79,10 +94,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   express = require("express")
   
   grunt.registerTask('default', ['compile', 'webserver', 'watch']);
-  grunt.registerTask('compile', ['clean', 'ember_templates', 'coffee', 'concat', 'copy']);
+  grunt.registerTask('compile', ['clean', 'ember_templates', 'coffee', 'sass', 'concat', 'copy']);
   grunt.registerTask("webserver", "Start a custom static web server.", function(){
     grunt.log.writeln('Starting static web server');
     server = express();
