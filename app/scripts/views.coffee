@@ -7,10 +7,10 @@ SF.PlayerView = Ember.View.extend
 
 SF.PieView = Ember.View.extend
   didInsertElement: ->
-    this.renderGraph()
+    @renderGraph()
   renderGraph: (->
     if $('#balance-pie').is(":visible")
-      plot1 = jQuery.jqplot 'balance-pie', [this.get('controller').get('graphData')],  
+      plot1 = jQuery.jqplot 'balance-pie', [@get('controller').get('graphData')],  
         seriesDefaults: 
           renderer: jQuery.jqplot.PieRenderer
           rendererOptions: 

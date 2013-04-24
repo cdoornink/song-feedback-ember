@@ -1,12 +1,16 @@
 SF.Song = Ember.Object.extend
   comments: []
+  
   reviews: []
+  
   reviewCount: (->
     if @get('reviews') isnt undefined then @get('reviews').length else 0
   ).property('reviews.@each.overall')
+  
   commentCount: (->
     if @get('comments') isnt undefined then @get('comments').length else 0
   ).property('comments.@each.message')
+  
   overall: (->
     if @get('reviews') isnt undefined
       if @get('reviews').length is 0 then return "na"
@@ -17,6 +21,7 @@ SF.Song = Ember.Object.extend
     else
       "na"
   ).property('reviews.@each.overall')
+  
   vocals: (->
     if @get('reviews') isnt undefined
       if @get('reviews').length is 0 then return "na"
@@ -26,7 +31,8 @@ SF.Song = Ember.Object.extend
       sum / (@get('reviews').getEach('vocals').length)
     else
       "na"
-  ).property('reviews.@each.vocals'),
+  ).property('reviews.@each.vocals')
+  
   songwriting: (->
     if @get('reviews') isnt undefined
       if @get('reviews').length is 0 then return "na"
@@ -37,6 +43,7 @@ SF.Song = Ember.Object.extend
     else
       "na"
   ).property('reviews.@each.songwriting')
+  
   musicianship: (->
     if @get('reviews') isnt undefined
       if @get('reviews').length is 0 then return "na"
@@ -46,7 +53,8 @@ SF.Song = Ember.Object.extend
       sum / @get('reviews').getEach('musicianship').length
     else
       "na"
-  ).property('reviews.@each.musicianship'),
+  ).property('reviews.@each.musicianship')
+  
   creativity: (->
     if @get('reviews') isnt undefined
       if @get('reviews').length is 0 then return "na"
@@ -56,7 +64,8 @@ SF.Song = Ember.Object.extend
       sum / @get('reviews').getEach('creativity').length
     else
       "na"
-  ).property('reviews.@each.creativity'),
+  ).property('reviews.@each.creativity')
+  
   production: (->
     if @get('reviews') isnt undefined
       if @get('reviews').length is 0 then return "na"
@@ -66,10 +75,12 @@ SF.Song = Ember.Object.extend
       sum / @get('reviews').getEach('production').length
     else
       "na"
-  ).property('reviews.@each.production'),
+  ).property('reviews.@each.production')
+  
   graphData: (->
     [['Vocals', @get('vocals')],['Songwriting', @get('songwriting')],['Musicianship', @get('musicianship')],['Creativity', @get('creativity')],['Production', @get('production')]]
-  ).property('production'),
+  ).property('production')
+  
   setSongProperties: (properties) ->
     @set("id", properties.sfid)
     @set("name", properties.name)
@@ -93,18 +104,14 @@ SF.Song.reopenClass
     songs = []
     SF.api "songs", "GET", {}, (response) ->
       response.songs.forEach (s) ->
-        song = SF.Song.create()
-        song.setSongProperties(s)
-        songs.addObject(song)
+        songs.addObject SF.Song.create().setSongProperties(s)
     songs
     
   findForUser: (id) ->
     songs = []
     SF.api "songs/user/"+id, "GET", {}, (response) ->
       response.songs.forEach (s) ->
-        song = SF.Song.create()
-        song.setSongProperties(s)
-        songs.addObject(song)
+        songs.addObject SF.Song.create().setSongProperties(s)
     songs
     
   new: (data) ->
