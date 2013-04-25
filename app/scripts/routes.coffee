@@ -25,13 +25,6 @@ SF.LogoutRoute = Ember.Route.extend
     SF.loginController.set 'id', null
     @transitionTo 'index'
 
-SF.MySongsRoute = Ember.Route.extend
-  setupController: (controller, model) ->
-    mysongs_model = []
-    id = SF.loginController.get('id')
-    if id then mysongs_model = SF.Song.findForUser(id) else @transitionTo 'songs'
-    controller.set "songs", mysongs_model
-
 SF.SongsRoute = Ember.Route.extend
   setupController: (controller, model) ->
     songs_model = []
@@ -43,4 +36,10 @@ SF.SongRoute = Ember.Route.extend
     SF.Song.find params.song_id
   setupController: (controller, model) ->
     controller.set "content", model
-    
+
+SF.MySongsRoute = Ember.Route.extend
+  setupController: (controller, model) ->
+    mysongs_model = []
+    id = SF.loginController.get('id')
+    if id then mysongs_model = SF.Song.findForUser(id) else @transitionTo 'songs'
+    controller.set "songs", mysongs_model
