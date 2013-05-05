@@ -8,6 +8,7 @@ SF.Router.map ->
   @resource 'my-songs'
   @resource 'upload'
   @resource 'settings'
+  @resource 'terms'
 
 SF.ApplicationRoute = Ember.Route.extend
   enter: ->

@@ -39,6 +39,8 @@ SF.UploadController = Ember.ObjectController.extend
   description: null
   src: null
   genre: null
+  agreeToTerms: false
+  hasNotAgreed: Ember.computed.not('agreeToTerms')
   tryUpload: ->
     SF.Song.new
       song:

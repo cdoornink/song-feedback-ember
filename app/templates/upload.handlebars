@@ -32,7 +32,10 @@
     </div>    
     <div class="control-group">
       <div class="controls">
-        <button type="submit" class="btn" {{action "tryUpload"}}>Upload</button>
+        <label class="checkbox">
+          {{view Ember.Checkbox checkedBinding="agreeToTerms"}} I agree to the {{#linkTo 'terms'}}terms of use{{/linkTo}}
+        </label>
+        <button type="submit" class="btn"  {{bindAttr disabled="hasNotAgreed"}} {{action "tryUpload"}}>Upload</button>
       </div>
     </div>
   </form>
