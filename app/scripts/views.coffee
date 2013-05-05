@@ -45,6 +45,11 @@ SF.RatingSliderView = Ember.View.extend
     val = Math.round(relX / 18) * 18;
     this.$(".rating").css('width', val)
     
+SF.PlayerGrippyView = Ember.View.extend
+  classNames: ['player-grippy']
+  click: ->
+    SF.playerController.togglePlayerView()
+
 SF.UploadView = Ember.View.extend
   didInsertElement: ->
     console.log "gettin ready to upload!"
