@@ -31,18 +31,19 @@ SF.PieView = Ember.View.extend
 SF.RatingSliderView = Ember.View.extend
   classNames: ['rating-container']
   mouseMove: (e) ->
+    
     elOffset = this.$().offset()  
-    relY = 200 - (e.pageY - elOffset.top)
-    val = Math.round(relY / 20) * 20;
-    this.$(".hoverer").css('height', val)
+    relX = e.pageX - elOffset.left
+    console.log "180 - ("+e.pageX+" - "+elOffset.left+") = "+relX
+    val = Math.round(relX / 18) * 18;
+    this.$(".hoverer").css('width', val)
   mouseLeave: ->
-    this.$(".hoverer").css('height', 0)
+    this.$(".hoverer").css('width', 0)
   click: (e) ->
     elOffset = this.$().offset()  
-    relY = 200 - (e.pageY - elOffset.top)
-    val = Math.round(relY / 20) * 20;
-    this.$(".rating").css('height', val)
-    this.$(".reflection").css('height', val / 5)
+    relX = e.pageX - elOffset.left
+    val = Math.round(relX / 18) * 18;
+    this.$(".rating").css('width', val)
     
 SF.UploadView = Ember.View.extend
   didInsertElement: ->
