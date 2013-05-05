@@ -5,6 +5,11 @@ SF.PlayerView = Ember.View.extend
   classNames: ['player']
   templateName: "player"
 
+SF.SongListItemView = Ember.View.extend
+  templateName: 'song-list-item'
+  click: ->
+    SF.playerController.playSong @get('content')
+
 SF.PieView = Ember.View.extend
   didInsertElement: ->
     @renderGraph()
@@ -38,3 +43,27 @@ SF.RatingSliderView = Ember.View.extend
     val = Math.round(relY / 20) * 20;
     this.$(".rating").css('height', val)
     this.$(".reflection").css('height', val / 5)
+    
+SF.UploadView = Ember.View.extend
+  didInsertElement: ->
+    console.log "gettin ready to upload!"
+    unless window.File and window.FileReader and window.FileList and window.Blob
+      alert('The File APIs are not fully supported in this browser.')
+
+SF.uploadSrc = Ember.Object.create
+  src: ''
+  
+SF.fileField = Ember.TextField.extend
+  type: 'file'
+  attributeBindings: ['file']
+  change: (evt) ->
+    input = evt.target
+    if input.files and input.files[0]
+      if input.files[0].type == "audio/mp3" or input.files[0].type == "audio/x-m4a "
+        reader = new FileReader()
+        that = this
+        reader.onload = (e) ->
+          that.get('controller').set('src', e.target.result);
+        reader.readAsDataURL(input.files[0]);
+      else
+        alert("invalid file type")

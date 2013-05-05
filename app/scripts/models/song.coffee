@@ -1,3 +1,5 @@
+SF.genres = ["Rock/Pop", "Rap/Hip-Hop", "Country", "Alt/Inde", "Singer-Songwriter", "Electronica"];
+
 SF.Song = Ember.Object.extend
   comments: []
   
@@ -12,8 +14,8 @@ SF.Song = Ember.Object.extend
   ).property('comments.@each.message')
   
   overall: (->
-    if @get('reviews') isnt undefined
-      if @get('reviews').length is 0 then return "na"
+    if @get('reviews') isnt undefined and @get('reviews') isnt null
+      if @get('reviews').length is 0 or @get('reviews').length is undefined then return "na"
       sum = @get('reviews').getEach('overall').reduce ((a,i) -> 
         a+i
       ), 0

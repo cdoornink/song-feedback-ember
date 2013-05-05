@@ -1,3 +1,12 @@
+<div class="song-image">
+  <img src="http://assets.rollingstone.com/assets/images/artists/304x304/roxy-music.jpg" height="180" width="180">
+
+  <div class="song-info">
+    <div class="song-name">{{SF.playerController.content.name}}</div>
+    <div class="song-artist">{{SF.playerController.content.artist}}</div>
+    <div class="song-description">{{SF.playerController.content.description}}</div>
+  </div>
+</div>
 <div class="ratings-container">
   {{#view SF.RatingSliderView}}
     <div class="rating vocals"></div>
@@ -30,3 +39,13 @@
     <div class="reflection overall"></div>
   {{/view}}
 </div>
+<div class="ratings-labels">
+  <div class="ratings-label">vocals</div>
+  <div class="ratings-label">songwriting</div>
+  <div class="ratings-label">musicianship</div>
+  <div class="ratings-label">creativity</div>
+  <div class="ratings-label">production</div>
+  <div class="ratings-label">overall</div>
+</div>
+{{view Ember.TextArea valueBinding="comment" placeholder="Comment"}} 
+<button type="submit" class="btn" {{action "submitFeedback"}}>Submit Feedback</button>

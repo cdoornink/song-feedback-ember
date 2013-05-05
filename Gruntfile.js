@@ -43,6 +43,7 @@ module.exports = function(grunt) {
         src: [
           'app/libs/jquery-1.8.3.min.js',
           'app/libs/bootstrap.min.js',
+          'app/libs/bootstrap-fileupload.js',
           'app/libs/handlebars-1.0.0.rc.3.js',
           'app/libs/ember.js',
           'app/libs/excanvas.min.js',
@@ -63,6 +64,7 @@ module.exports = function(grunt) {
           'app/styles/libs/jquery.jqplot.css',
           'app/styles/libs/bootstrap.css',
           'app/styles/libs/bootstrap-responsive.css',
+          'app/styles/libs/bootstrap-fileupload.css',
           'build/compiled_sass.css'
         ],
         dest: 'build/css/app.css'

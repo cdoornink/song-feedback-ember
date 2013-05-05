@@ -10,6 +10,9 @@ SF.LoginController = Ember.ObjectController.extend
         user = SF.User.create()
         user.setUserProperties response.user
         SF.loginController.set 'content', user
+        SF.loginController.set 'username', user.email
+        SF.loginController.set 'password', user.password
+        SF.loginController.set 'id', user.id
         localStorage.setItem 'username', user.email
         localStorage.setItem 'password', user.password
         localStorage.setItem 'id', user.id
@@ -27,23 +30,31 @@ SF.MySongsController = Ember.ArrayController.extend
 SF.SongsController = Ember.ArrayController.extend
   songs: []
   leastRated: ->
-    # newSong = 
-#       song:
-#         sfid: "10"
-#         user: "1"
-#         name: "I'm making progress"
-#         artist: "Rejuvinilezzz"
-#         file: null
-#         description: "I am free of ember data shackles..."
-#         genre: "Poop Pop"
-#         reviews:
-#           overall: 8
-#           vocals: 6
-#           songwriting: 5
-#           musicianship: 4
-#           creativity: 6
-#           production: 5
-#           date: new Date()        
-#         date: new Date()
-#     console.log(newSong)
-#     SF.Song.new(newSong)
+    console.log "needs work"
+
+SF.UploadController = Ember.ObjectController.extend
+  content: {}
+  name: null
+  artist: null
+  description: null
+  src: null
+  genre: null
+  tryUpload: ->
+    SF.Song.new
+      song:
+        sfid: new Date().getTime()
+        user: SF.loginController.get('content.id')
+        name: @name
+        artist: @artist
+        description: @description 
+        file: "figureOutLater"
+        genre: @genre
+        date: new Date()
+        
+SF.PlayerController = Ember.ObjectController.extend
+  content: null
+  playSong: (song) ->
+    @set('content', song)
+
+SF.playerController = SF.PlayerController.create()
+        
