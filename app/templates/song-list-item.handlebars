@@ -1,0 +1,20 @@
+{{#with view.content}}
+<div class="row-fluid song-list-item-container">
+  {{#unless song.reviews}}
+    <div class="new-banner"></div>
+  {{/unless}}
+  <div class="song-list-item">
+    <div class="span6 song-list-left">
+      <div class="sf-play pull-left"><i class="icon-play icon-white"></i></div>
+      <div class="title">{{#linkTo song song}}{{song.name}}{{/linkTo}}</div>
+      <div class="artist">{{song.artist}}</div> 
+    </div>
+    <div class="span3">      
+      <div class="genre">{{song.genre}}</div>
+    </div>
+    <div class="span3">   
+      <div class="date">{{mdy song.date}}</div>
+    </div>
+  </div>
+</div>
+{{/with}}
