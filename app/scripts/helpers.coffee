@@ -21,3 +21,5 @@ Ember.Handlebars.registerBoundHelper "mdy", (date) ->
 Ember.Handlebars.registerBoundHelper "bargraph", (n) ->
     new Handlebars.SafeString('<div class="bar" style="width: '+n*8+'%"></div>')
       
+Ember.TextField.reopen
+  attributeBindings: ["required"]

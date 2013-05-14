@@ -108,6 +108,13 @@ SF.Song.reopenClass
       response.songs.forEach (s) ->
         songs.addObject SF.Song.create().setSongProperties(s)
     songs
+  
+  findRecent: ->
+    songs = []
+    SF.api "songs/recent/all", "GET", {}, (response) ->
+      response.songs.forEach (s) ->
+        songs.addObject SF.Song.create().setSongProperties(s)
+    songs
     
   findForUser: (id) ->
     songs = []

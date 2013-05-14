@@ -21,7 +21,7 @@ module.exports = function(grunt) {
         files: {
           'build/js/app.js': [
             'app/scripts/routes.coffee', 
-            'app/scripts/controllers.coffee', 
+            'app/scripts/controllers/*', 
             'app/scripts/views.coffee', 
             'app/scripts/helpers.coffee', 
             'app/scripts/data.coffee', 

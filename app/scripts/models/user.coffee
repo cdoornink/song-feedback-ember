@@ -16,3 +16,4 @@ SF.User.reopenClass
     SF.api "users/"+id, "GET", {}, (response) ->
       user.setUserProperties(response.user)
     user
+    
