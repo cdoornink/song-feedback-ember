@@ -20,7 +20,7 @@ SF.SignupController = Ember.ObjectController.extend
   ).observes('email')
   
   trySignup: ->
-    data = user:
+    data = 
         sfid: new Date().getTime()
         first_name: @firstName
         last_name: @lastName
@@ -34,23 +34,23 @@ SF.SignupController = Ember.ObjectController.extend
       valid = re.test(that.email)
       dontSend = false
       $('.control-group').removeClass('error')
-      if data.user.first_name is null or data.user.first_name.length is 0
+      if data.first_name is null or data.first_name.length is 0
         $('.first-name-signup-group').addClass('error')
         dontSend = true
-      if data.user.last_name is null or data.user.last_name.length is 0
+      if data.last_name is null or data.last_name.length is 0
         $('.last-name-signup-group').addClass('error')
         dontSend = true
-      if data.user.email is null or data.user.email.length is 0 or valid is false or avail is false
+      if data.email is null or data.email.length is 0 or valid is false or avail is false
         $('.email-signup-group').addClass('error')
         dontSend = true
-      if data.user.password is null or data.user.first_name.length < 3
+      if data.password is null or data.first_name.length < 3
         $('.password-signup-group').addClass('error')
         dontSend = true
       unless dontSend
         SF.api "users", "POST", data, (response) ->
-          if response.user
+          if response
             user = SF.User.create()
-            user.setUserProperties response.user
+            user.setUserProperties response
             SF.loginController.set 'content', user
             SF.loginController.set 'username', user.email
             SF.loginController.set 'password', user.password
