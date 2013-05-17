@@ -18,13 +18,19 @@
 
 
 /* BROWSE PAGE */
-.browse-header h2
-  margin-right: 20px
-
-.browse-nav
-  margin: 15px 4px 0
-
-
+@media (min-width: 767px)
+  .browse-header h2
+    margin-right: 20px
+    float: left
+  .browse-nav
+    margin: 15px 4px 0
+    float: left
+@media (max-width: 767px)
+  .browse-header h2
+    margin: 0 10px
+  .browse-nav
+    margin: 5px 10px
+      
 /* LOGIN PAGE */
 .login-page
   margin-top: 50px

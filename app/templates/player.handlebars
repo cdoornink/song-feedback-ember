@@ -1,6 +1,6 @@
 {{view SF.PlayerGrippyView}}
 <div class="song-image">
-  <img src="http://assets.rollingstone.com/assets/images/artists/304x304/roxy-music.jpg" height="180" width="180">
+  <img src="http://userserve-ak.last.fm/serve/_/232628/Dave+Matthews+Band.jpg" height="180" width="180">
 
   <div class="song-info">
     <div class="song-name">{{SF.playerController.content.name}}</div>
@@ -9,42 +9,54 @@
   </div>
 </div>
 <div class="ratings-container">
-  <div class="ratings-label">vocals</div>
-  {{#view SF.RatingSliderView}}
-    <div class="rating vocals"></div>
-    <div class="hoverer vocals"></div>
-    <div class="reflection vocals"></div>
-  {{/view}}
-  <div class="ratings-label">songwriting</div>
-  {{#view SF.RatingSliderView}}
-    <div class="rating songwriting"></div>
-    <div class="hoverer songwriting"></div>
-    <div class="reflection songwriting"></div>
-  {{/view}}
-  <div class="ratings-label">musicianship</div>
-  {{#view SF.RatingSliderView}}
-    <div class="rating musicianship"></div>
-    <div class="hoverer musicianship"></div>
-    <div class="reflection musicianship"></div>
-  {{/view}}
-  <div class="ratings-label">creativity</div>
-  {{#view SF.RatingSliderView}}
-    <div class="rating creativity"></div>
-    <div class="hoverer creativity"></div>
-    <div class="reflection creativity"></div>
-  {{/view}}
-  <div class="ratings-label">production</div>
-  {{#view SF.RatingSliderView}}
-    <div class="rating production"></div>
-    <div class="hoverer production"></div>
-    <div class="reflection production"></div>
-  {{/view}}
-  <div class="ratings-label">overall</div>
-  {{#view SF.RatingSliderView}}
-    <div class="rating overall"></div>
-    <div class="hoverer overall"></div>
-    <div class="reflection overall"></div>
-  {{/view}}
+  <div class="row-fluid">
+    <div class="ratings-label">vocals</div>
+    {{#view SF.RatingSliderView}}
+      <div class="rating vocals"></div>
+      <div class="hoverer vocals"></div>
+      <div class="reflection vocals"></div>
+    {{/view}}
+  </div>
+  <div class="row-fluid">
+    <div class="ratings-label">songwriting</div>
+    {{#view SF.RatingSliderView}}
+      <div class="rating songwriting"></div>
+      <div class="hoverer songwriting"></div>
+      <div class="reflection songwriting"></div>
+    {{/view}}
+  </div>
+  <div class="row-fluid">
+    <div class="ratings-label">musicianship</div>
+    {{#view SF.RatingSliderView}}
+      <div class="rating musicianship"></div>
+      <div class="hoverer musicianship"></div>
+      <div class="reflection musicianship"></div>
+    {{/view}}
+  </div>
+  <div class="row-fluid">
+    <div class="ratings-label">creativity</div>
+    {{#view SF.RatingSliderView}}
+      <div class="rating creativity"></div>
+      <div class="hoverer creativity"></div>
+      <div class="reflection creativity"></div>
+    {{/view}}
+  </div>
+  <div class="row-fluid">
+    <div class="ratings-label">production</div>
+    {{#view SF.RatingSliderView}}
+      <div class="rating production"></div>
+      <div class="hoverer production"></div>
+      <div class="reflection production"></div>
+    {{/view}}
+  </div>
+  <div class="row-fluid">
+    <div class="ratings-label">overall</div>
+    {{#view SF.RatingSliderView}}
+      <div class="rating overall"></div>
+      <div class="hoverer overall"></div>
+      <div class="reflection overall"></div>
+    {{/view}}
+  </div>
 </div>
 <div class="feedback-form-bottom">
   {{view Ember.TextArea valueBinding="comment" placeholder="Comment"}}

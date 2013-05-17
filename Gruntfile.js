@@ -3,7 +3,10 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    clean: ["build", "dist"],
+    clean: {
+      dev: ["build", "dist/dev"],
+      prod: ["build", "dist/prod"]
+    },
     ember_templates: {
       compile: {
         options: {
@@ -38,6 +41,20 @@ module.exports = function(grunt) {
         }
       }
     },
+    cssmin: {
+      compress: {
+        files: {
+          'build/prodcss/app.css': 'build/css/app.css'
+        }
+      }
+    },
+    uglify: {
+      my_target: {
+        files: {
+          'build/js/app.js': ['build/js/app.js']
+        }
+      }
+    },
     concat: {
       vendor: {
         src: [
@@ -52,7 +69,27 @@ module.exports = function(grunt) {
         ],
         dest: 'build/js/vendor.js'
       },
+      prodVendor: {
+        src: [
+          'app/libs/jquery-1.8.3.min.js',
+          'app/libs/bootstrap.min.js',
+          'app/libs/bootstrap-fileupload.js',
+          'app/libs/handlebars-1.0.0.rc.3.js',
+          'app/libs/ember-1.0.0-rc.3.min.js',
+          'app/libs/excanvas.min.js',
+          'app/libs/jquery.jqplot.min.js',
+          'app/libs/jqplot.pieRenderer.min.js'
+        ],
+        dest: 'build/js/vendor.js'
+      },
       app: {
+        src: [
+          'build/js/app.js',
+          'build/templates/templates.js',
+        ],
+        dest: 'build/js/app.js'
+      },
+      prodApp: {
         src: [
           'build/js/app.js',
           'build/templates/templates.js',
@@ -79,6 +116,15 @@ module.exports = function(grunt) {
           {src: ['index.html'], dest: "dist/dev/"},
           {src: ['favicon.ico'], dest: "dist/dev/"}
         ]
+      },
+      prod: {
+        files: [
+          {expand: true, cwd: "app/img", src: ['**'], dest: "dist/prod/img"},
+          {expand: true, cwd: "build/js", src: ['**'], dest: "dist/prod/js"},
+          {expand: true, cwd: "build/prodcss", src: ['**'], dest: "dist/prod/css"},
+          {src: ['index.html'], dest: "dist/prod/"},
+          {src: ['favicon.ico'], dest: "dist/prod/"}
+        ]
       }
     },
     watch: {
@@ -97,10 +143,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   express = require("express")
   
   grunt.registerTask('default', ['compile', 'webserver', 'watch']);
-  grunt.registerTask('compile', ['clean', 'ember_templates', 'coffee', 'sass', 'concat', 'copy']);
+  grunt.registerTask('compile', ['clean:dev', 'ember_templates', 'coffee', 'sass', 'concat:vendor', 'concat:app', 'concat:styles', 'copy:dev']);
   grunt.registerTask("webserver", "Start a custom static web server.", function(){
     grunt.log.writeln('Starting static web server');
     server = express();
@@ -113,4 +161,5 @@ module.exports = function(grunt) {
     grunt.log.writeln('Listening on port 3000');
     server.listen(3000);
   });  
+  grunt.registerTask('prod', ['clean:prod', 'ember_templates', 'coffee', 'sass', 'concat:prodVendor', 'concat:prodApp', 'concat:styles', 'cssmin', 'uglify', 'copy:prod']);
 };

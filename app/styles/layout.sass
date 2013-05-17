@@ -16,7 +16,7 @@
   .player
     width: 220px
     height: 100%
-    background: #E2E2E2
+    background: #F2F2F2
     float: left
     position: fixed
     box-shadow: 0 0 8px #aaa
@@ -62,20 +62,23 @@
       border-top: 1px solid #bbb
       border-left: 1px solid #bbb
       border-right: 1px solid #bbb
-      background: #E2E2E2 url('/img/grippy.png')
-      position: absolute
-      top: -21px
+      background-color: #E2E2E2
+      background-image: url('../img/grippy.png')
+      position: fixed
+      bottom: 10px
       height: 20px
       width: 50px
       cursor: pointer
+      left: 43%
       left: calc(50% - 25px)
   .player.expanded
     height: 300px
-
+    .player-grippy
+      bottom: 300px
 
 /* HEADER */
 .navbar-fixed-top .navbar-inner
-  background: black url('/img/darkdenim3.png')
+  background: black url('../img/darkdenim3.png')
   border-bottom: none
   box-shadow: none
 .navbar 

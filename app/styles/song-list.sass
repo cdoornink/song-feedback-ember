@@ -6,9 +6,14 @@
   position: relative
   border-bottom: 1px solid #E6E8E8
   border-top: 1px solid #FFF
+  cursor: pointer
 
-.song-list-item-container:hover  
-  background: #EAEAEA
+@media (min-width: 767px)
+  .song-list-item-container:hover  
+    background: #EAEAEA
+@media (max-width: 767px)
+  .song-list-item-container:active
+    background: #EAEAEA
 
 .song-list-item
   overflow: hidden
@@ -27,7 +32,7 @@
   margin-right: 10px
 
 .new-banner
-  background: url('/img/new-banner.png')
+  background: url('../img/new-banner.png')
   height: 30px
   width: 30px
   position: absolute
