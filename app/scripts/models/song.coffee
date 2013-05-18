@@ -14,69 +14,45 @@ SF.Song = Ember.Object.extend
   ).property('comments.@each.message')
   
   overall: (->
-    if @get('reviews') isnt undefined and @get('reviews') isnt null
+    if @get('reviews') is undefined then return "na" else
       if @get('reviews').length is 0 or @get('reviews').length is undefined then return "na"
-      sum = @get('reviews').getEach('overall').reduce ((a,i) -> 
-        a+i
-      ), 0
+      sum = @get('reviews').getEach('overall').reduce (a,i) -> parseInt(a) + parseInt(i)
       sum / (@get('reviews').getEach('overall').length)
-    else
-      "na"
   ).property('reviews.@each.overall')
   
   vocals: (->
-    if @get('reviews') isnt undefined
+    if @get('reviews') is undefined then return "na" else
       if @get('reviews').length is 0 then return "na"
-      sum = this.get('reviews').getEach('vocals').reduce ((a,i) -> 
-        a+i
-      ), 0
+      sum = this.get('reviews').getEach('vocals').reduce (a,i) -> parseInt(a) + parseInt(i)
       sum / (@get('reviews').getEach('vocals').length)
-    else
-      "na"
   ).property('reviews.@each.vocals')
   
   songwriting: (->
-    if @get('reviews') isnt undefined
+    if @get('reviews') is undefined then return "na" else
       if @get('reviews').length is 0 then return "na"
-      sum = @get("reviews").getEach("songwriting").reduce ((a, i) ->
-        a + i
-      ), 0
+      sum = @get("reviews").getEach("songwriting").reduce (a, i) -> parseInt(a) + parseInt(i)
       sum / @get('reviews').getEach('songwriting').length
-    else
-      "na"
   ).property('reviews.@each.songwriting')
   
   musicianship: (->
-    if @get('reviews') isnt undefined
+    if @get('reviews') is undefined then return "na" else
       if @get('reviews').length is 0 then return "na"
-      sum = @get("reviews").getEach("musicianship").reduce ((a, i) ->
-        a + i
-      ), 0
+      sum = @get("reviews").getEach("musicianship").reduce (a, i) -> parseInt(a) + parseInt(i)
       sum / @get('reviews').getEach('musicianship').length
-    else
-      "na"
   ).property('reviews.@each.musicianship')
   
   creativity: (->
-    if @get('reviews') isnt undefined
+    if @get('reviews') is undefined then return "na" else
       if @get('reviews').length is 0 then return "na"
-      sum = @get("reviews").getEach("creativity").reduce ((a, i) ->
-        a + i
-      ), 0
+      sum = @get("reviews").getEach("creativity").reduce (a, i) -> parseInt(a) + parseInt(i)
       sum / @get('reviews').getEach('creativity').length
-    else
-      "na"
   ).property('reviews.@each.creativity')
   
   production: (->
-    if @get('reviews') isnt undefined
+    if @get('reviews') is undefined then return "na" else
       if @get('reviews').length is 0 then return "na"
-      sum = @get("reviews").getEach("production").reduce ((a, i) ->
-        a + i
-      ), 0
+      sum = @get("reviews").getEach("production").reduce (a, i) -> parseInt(a) + parseInt(i)
       sum / @get('reviews').getEach('production').length
-    else
-      "na"
   ).property('reviews.@each.production')
   
   graphData: (->
@@ -85,6 +61,7 @@ SF.Song = Ember.Object.extend
   
   setSongProperties: (properties) ->
     @set("id", properties.sfid)
+    @set("bson", properties._id)
     @set("name", properties.name)
     @set("artist", properties.artist)
     @set("user", properties.user)
@@ -125,4 +102,21 @@ SF.Song.reopenClass
     
   new: (data) ->
     SF.api "songs", "POST", data, (response) ->
-      console.log "response"
+      console.log response
+  
+  update: (id, data) ->
+    SF.api "songs/"+id, "PUT", data, (response) ->
+      console.log response
+    
+  songToJSON: (data) ->
+    song = 
+      sfid: data.id
+      user: data.user
+      name: data.name
+      artist: data.artist
+      description: data.description 
+      file: data.file
+      genre: data.genre
+      date: data.date
+      comments: data.comments
+      reviews: data.reviews

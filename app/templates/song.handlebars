@@ -1,7 +1,10 @@
 {{#with controller.content}}
   <div class="row-fluid">
-    <h3 class="no-bottom-margin">{{name}} <small>{{artist}}</small></h3>
-    <p class="thin-text">{{description}}</p>
+    {{#view SF.SongPagePlayView contentBinding="this"}}
+    <div class="sf-play song-page-play pull-left"><i class="icon-play icon-white"></i></div>
+    {{/view}}
+    <h3 class="song-page-title no-bottom-margin">{{name}} <small>{{artist}}</small></h3>
+    <p class="song-page-description thin-text">{{description}}</p>
   </div>
   <div class="row-fluid">
     <div class="span6 charts"> 

@@ -10,6 +10,10 @@ SF.SongListItemView = Ember.View.extend
   click: ->
     SF.playerController.playSong @get('content')
 
+SF.SongPagePlayView = Ember.View.extend
+  click: ->
+    SF.playerController.playSong @get('content')
+
 SF.PieView = Ember.View.extend
   didInsertElement: ->
     @renderGraph()
@@ -25,16 +29,14 @@ SF.PieView = Ember.View.extend
         title: "Balance"
         seriesColors: [ "#B2CCD4", "#72C7D4", "#65A8BA", "#7E9396", "#498087"]
         legend: { show:false, location: 'e' }
-        grid: {borderWidth:0, shadow:false}
+        grid: {borderWidth:0, shadow:false, background: "#f8f8f8"}
   ).observes('this.controller.graphData')  
   
 SF.RatingSliderView = Ember.View.extend
   classNames: ['rating-container']
-  mouseMove: (e) ->
-    
+  mouseMove: (e) ->    
     elOffset = this.$().offset()  
     relX = e.pageX - elOffset.left
-    console.log "180 - ("+e.pageX+" - "+elOffset.left+") = "+relX
     val = Math.round(relX / 18) * 18;
     this.$(".hoverer").css('width', val)
   mouseLeave: ->
@@ -42,7 +44,10 @@ SF.RatingSliderView = Ember.View.extend
   click: (e) ->
     elOffset = this.$().offset()  
     relX = e.pageX - elOffset.left
-    val = Math.round(relX / 18) * 18;
+    rating = Math.round(relX / 18)
+    val = rating * 18;
+    cat = @.$().children(".rating").attr('cat')
+    SF.playerController.set cat, rating
     this.$(".rating").css('width', val)
     
 SF.PlayerGrippyView = Ember.View.extend
@@ -52,7 +57,6 @@ SF.PlayerGrippyView = Ember.View.extend
 
 SF.UploadView = Ember.View.extend
   didInsertElement: ->
-    console.log "gettin ready to upload!"
     unless window.File and window.FileReader and window.FileList and window.Blob
       alert('The File APIs are not fully supported in this browser.')
 
