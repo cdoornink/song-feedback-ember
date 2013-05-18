@@ -26,6 +26,10 @@ SF.SignupController = Ember.ObjectController.extend
         last_name: @lastName
         email: @email 
         password: @password
+        comments: []
+        reviews: []
+        songs: []
+        member_since: new Date()
     that = this
     
     SF.api "check_availability", "POST", {email:@email}, (response) ->      

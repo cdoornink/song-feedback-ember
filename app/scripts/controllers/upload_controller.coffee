@@ -9,9 +9,10 @@ SF.UploadController = Ember.ObjectController.extend
   hasNotAgreed: Ember.computed.not('agreeToTerms')
   
   tryUpload: ->
+    sfid = new Date().getTime()
     SF.Song.new
       song:
-        sfid: new Date().getTime()
+        sfid: sfid
         user: SF.loginController.get('content.id')
         name: @name
         artist: @artist
@@ -19,3 +20,6 @@ SF.UploadController = Ember.ObjectController.extend
         file: "figureOutLater"
         genre: @genre
         date: new Date()
+    if SF.loginController.content.songs is undefined then SF.loginController.content.set 'songs', [] 
+    SF.loginController.content.songs.push sfid
+    SF.User.update()

@@ -18,6 +18,8 @@ SF.PlayerController = Ember.ObjectController.extend
     if $(".player").css("height") is "300px" then @compressPlayer() else @expandPlayer()
   submitFeedback: ->
     return if @get('content') is null
+    reviews = @get('content').get("reviews")
+    rereviewed = false
     review = 
       overall: @overall
       vocals: @vocals
@@ -27,14 +29,16 @@ SF.PlayerController = Ember.ObjectController.extend
       production: @production
       user: SF.loginController.get('content.id')
       date: new Date()
-    reviews = @get('content').get("reviews")
+    
     if reviews is undefined or reviews.length is 0
       @content.set "reviews", [review]
     else
       reviews.getEach('user').forEach (u,i) -> 
-        if u is SF.loginController.get('content.id') then reviews.splice(i)
+        if u is SF.loginController.get('content.id')
+          reviews.splice(i)
+          rereviewed = true
       reviews.addObject review
-    if @get('content').get('reviewCount') is undefined then console.log "what now???"
+    
     if @comment isnt null
       comment = 
         user: 
@@ -47,7 +51,15 @@ SF.PlayerController = Ember.ObjectController.extend
         @content.set "comments", [comment]
       else
         comments.addObject comment
-        @set 'comment', null
+      @set 'comment', null
+      if SF.loginController.content.comments is undefined then SF.loginController.content.set 'comments', [] 
+      SF.loginController.content.comments.push @content.id  
+      
+    unless rereviewed
+      if SF.loginController.content.reviews is undefined then SF.loginController.content.set 'reviews', [] 
+      SF.loginController.content.reviews.push @content.id
+    
     SF.Song.update @content.id, SF.Song.songToJSON(@content)
+    SF.User.update()
     
 SF.playerController = SF.PlayerController.create()
