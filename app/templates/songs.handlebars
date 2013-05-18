@@ -1,9 +1,8 @@
 <div class="row-fluid browse-header">
-  <h2>Browse</h2>
-  <ul class="nav nav-pills browse-nav">
-    <li>{{#linkTo 'songs'}}Recent{{/linkTo}}</li>
-    <li>{{#linkTo 'songs.least-rated'}}Least Rated{{/linkTo}}</li>
-    <li>{{#linkTo 'songs.top'}}Top{{/linkTo}}</li>
-  </ul>  
+  <h3>Browse Songs</h3>
 </div>
-{{outlet}}
+<div class="song-list">
+  {{#each song in songs}}
+  {{view SF.SongListItemView contentBinding='song'}}
+  {{/each}}
+</div>

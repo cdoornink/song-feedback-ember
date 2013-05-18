@@ -32,9 +32,9 @@ SF.PlayerController = Ember.ObjectController.extend
       @content.set "reviews", [review]
     else
       reviews.getEach('user').forEach (u,i) -> 
-        if u is SF.loginController.get('content.id')
-          console.log reviews.splice(i)
+        if u is SF.loginController.get('content.id') then reviews.splice(i)
       reviews.addObject review
+    if @get('content').get('reviewCount') is undefined then console.log "what now???"
     if @comment isnt null
       comment = 
         user: 

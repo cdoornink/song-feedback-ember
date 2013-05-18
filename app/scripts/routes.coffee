@@ -3,10 +3,7 @@
 SF.Router.map ->
   @resource 'login'
   @resource 'logout'
-  @resource 'songs', ->
-     @route 'index', {path: '/recent'}
-     @route 'least-rated'
-     @route 'top'
+  @resource 'songs'
   @resource 'song', {path:'/songs/:song_id'}
   @resource 'my-songs'
   @resource 'upload'
@@ -39,22 +36,10 @@ SF.LogoutRoute = Ember.Route.extend
     SF.loginController.set 'id', null
     @transitionTo 'index'
 
-SF.SongsIndexRoute = Ember.Route.extend
+SF.SongsRoute = Ember.Route.extend
   setupController: (controller, model) ->
     songs_model = []
     songs_model = SF.Song.findRecent()
-    controller.set "songs", songs_model
-
-SF.SongsLeastRatedRoute = Ember.Route.extend
-  setupController: (controller, model) ->
-    songs_model = []
-    songs_model = SF.Song.findAll()
-    controller.set "songs", songs_model
-
-SF.SongsTopRoute = Ember.Route.extend
-  setupController: (controller, model) ->
-    songs_model = []
-    songs_model = SF.Song.findAll()
     controller.set "songs", songs_model
 
 SF.SongRoute = Ember.Route.extend
