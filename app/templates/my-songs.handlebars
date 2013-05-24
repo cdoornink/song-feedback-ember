@@ -8,4 +8,5 @@
 {{#each song in controller.songs}}
   {{view SF.SongListItemView contentBinding='song'}}
 {{/each}}
+{{#unless controller.songs}}You haven't uploaded any songs of your own.{{/unless}}
 </div>
