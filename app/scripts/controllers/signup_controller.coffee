@@ -47,7 +47,7 @@ SF.SignupController = Ember.ObjectController.extend
       if data.email is null or data.email.length is 0 or valid is false or avail is false
         $('.email-signup-group').addClass('error')
         dontSend = true
-      if data.password is null or data.first_name.length < 3
+      if data.password is null or data.password.length < 3
         $('.password-signup-group').addClass('error')
         dontSend = true
       unless dontSend

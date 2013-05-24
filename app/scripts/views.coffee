@@ -59,7 +59,17 @@ SF.UploadView = Ember.View.extend
   didInsertElement: ->
     unless window.File and window.FileReader and window.FileList and window.Blob
       alert('The File APIs are not fully supported in this browser.')
-
+    @checkCanUpload()
+  checkCanUpload: (->
+    reviews = SF.loginController.content.reviews or []
+    songs = SF.loginController.content.songs or []
+    if reviews.length / (songs.length + 1) >= 3
+      SF.loginController.set 'canUpload', true
+    else
+      SF.loginController.set 'canUpload', false 
+      SF.loginController.set 'reviewsLeftBeforeUpload', (3 - (reviews.length % 3))
+  ).observes('SF.loginController.content.reviews')
+  
 SF.uploadSrc = Ember.Object.create
   src: ''
   

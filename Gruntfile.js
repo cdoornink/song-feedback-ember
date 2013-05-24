@@ -65,7 +65,8 @@ module.exports = function(grunt) {
           'app/libs/ember.js',
           'app/libs/excanvas.min.js',
           'app/libs/jquery.jqplot.min.js',
-          'app/libs/jqplot.pieRenderer.min.js'
+          'app/libs/jqplot.pieRenderer.min.js',
+          'app/libs/moment.js'
         ],
         dest: 'build/js/vendor.js'
       },
@@ -78,7 +79,8 @@ module.exports = function(grunt) {
           'app/libs/ember-1.0.0-rc.3.min.js',
           'app/libs/excanvas.min.js',
           'app/libs/jquery.jqplot.min.js',
-          'app/libs/jqplot.pieRenderer.min.js'
+          'app/libs/jqplot.pieRenderer.min.js',
+          'app/libs/moment.js'
         ],
         dest: 'build/js/vendor.js'
       },

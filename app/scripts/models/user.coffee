@@ -1,14 +1,28 @@
-SF.User = Ember.Object.extend
+SF.User = Ember.Object.extend     
+  reviews: []
+  
   setUserProperties: (properties) ->
     @set("id", properties.sfid);   
-    @set("firstName", properties.first_name);
-    @set("lastName", properties.last_name);
-    @set("email", properties.email);
-    @set("password", properties.password); 
-    @set("memberSince", properties.member_since);   
-    @set("songs", properties.songs);
-    @set("comments", properties.comments);
-    @set("reviews", properties.reviews);
+    @set("firstName", properties.first_name)
+    @set("lastName", properties.last_name)
+    @set("email", properties.email)
+    @set("password", properties.password)
+    @set("memberSince", properties.member_since)
+    @set("songs", properties.songs)
+    @set("comments", properties.comments)
+    @set("reviews", properties.reviews)
+  
+  canUpload: (->
+    console.log "checking"
+    console.log (3 - (@get('reviews').length % (@get('songs').length + 1)))
+    console.log @get('reviews').length
+    console.log @get('songs').length
+    if @get('reviews').length / (@get('songs').length + 1) >= 3
+      return true
+    else
+      @set 'reviewsLeftBeforeUpload', (3 - (@get('reviews').length % (@get('songs').length + 1)))
+      return false       
+  ).property('reviews')
 
 SF.User.reopenClass
   find: (id) ->

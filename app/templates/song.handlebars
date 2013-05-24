@@ -27,7 +27,7 @@
     {{#each comment in comments}}
       <blockquote>  
         <p>{{comment.message}}</p>
-        <small>{{comment.user.fullName}} on {{comment.date}}</small>
+        <small>{{comment.user.fullName}}, {{fromnow comment.date}}</small>
       </blockquote>
     {{/each}}
     </div>

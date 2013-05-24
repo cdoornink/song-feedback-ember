@@ -2,7 +2,11 @@ SF.LoginController = Ember.ObjectController.extend
   isError: false
   username: null
   password: null
-  content: {}
+  content: 
+    reviews: []
+    songs: []
+  canUpload: false
+  reviewsLeftBeforeUpload: 0
   
   tryLogin: (auto) ->
     that = this
