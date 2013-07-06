@@ -55,10 +55,23 @@ SF.PlayerGrippyView = Ember.View.extend
   click: ->
     SF.playerController.togglePlayerView()
 
+SF.AudioFileView = Ember.View.extend
+  didInsertElement: ->
+    console.log "inserted element"
+    that = this
+    $('#fileupload').fileupload
+      dataType: 'json'
+      progressall: (e, data) ->
+        progress = (data.loaded / data.total) * 100
+        $('#progress .bar').css 'width', progress + '%'
+      done: (e, data) ->
+        $('#progress .bar').css 'width', '0%'
+        $.each data.result.files, (index, file) ->
+          console.log file
+          that.get('controller').uploadComplete(file)
+          
 SF.UploadView = Ember.View.extend
   didInsertElement: ->
-    unless window.File and window.FileReader and window.FileList and window.Blob
-      alert('The File APIs are not fully supported in this browser.')
     @checkCanUpload()
   checkCanUpload: (->
     reviews = SF.loginController.content.reviews or []
@@ -66,24 +79,6 @@ SF.UploadView = Ember.View.extend
     if reviews.length / (songs.length + 1) >= 3
       SF.loginController.set 'canUpload', true
     else
-      SF.loginController.set 'canUpload', false 
+      SF.loginController.set 'canUpload', false
       SF.loginController.set 'reviewsLeftBeforeUpload', (3 - (reviews.length % 3))
   ).observes('SF.loginController.content.reviews')
-  
-SF.uploadSrc = Ember.Object.create
-  src: ''
-  
-SF.fileField = Ember.TextField.extend
-  type: 'file'
-  attributeBindings: ['file']
-  change: (evt) ->
-    input = evt.target
-    if input.files and input.files[0]
-      if input.files[0].type == "audio/mp3" or input.files[0].type == "audio/x-m4a "
-        reader = new FileReader()
-        that = this
-        reader.onload = (e) ->
-          that.get('controller').set('src', e.target.result);
-        reader.readAsDataURL(input.files[0]);
-      else
-        alert("invalid file type")

@@ -13,7 +13,6 @@ SF.Router.map ->
 
 SF.ApplicationRoute = Ember.Route.extend
   enter: ->
-    console.log "application route enter here"
     SF.loginController.set 'username', localStorage.getItem('username')
     SF.loginController.set 'password', localStorage.getItem('password')
     SF.loginController.set 'id', localStorage.getItem('id')
@@ -21,11 +20,7 @@ SF.ApplicationRoute = Ember.Route.extend
 
 SF.IndexRoute = Ember.Route.extend
   redirect: ->
-    console.log "redirect from index?"
-    console.log SF.loginController.get 'username'
-    if SF.loginController.get('username') isnt null
-      console.log "not logged in"
-      @transitionTo 'songs'
+    if SF.loginController.get('username') isnt null then @transitionTo 'songs'
 
 SF.LogoutRoute = Ember.Route.extend
   redirect: ->

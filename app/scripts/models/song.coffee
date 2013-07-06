@@ -66,6 +66,8 @@ SF.Song = Ember.Object.extend
     @set("artist", properties.artist)
     @set("user", properties.user)
     @set("file", properties.file)
+    @set("size", properties.size)
+    @set("type", properties.type)
     @set("description", properties.description)
     @set("genre", properties.genre)
     @set("reviews", properties.reviews)
@@ -116,6 +118,8 @@ SF.Song.reopenClass
       artist: data.artist
       description: data.description 
       file: data.file
+      size: data.size
+      type: data.type
       genre: data.genre
       date: data.date
       comments: data.comments

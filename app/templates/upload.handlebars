@@ -10,17 +10,22 @@
         <label class="control-label">Artist Name</label>
         <div class="controls">{{view Ember.TextField valueBinding="artist"}}</div>
       </div>
+      {{#view SF.AudioFileView contentBinding="this"}}
       <div class="control-group">
         <label class="control-label">Audio File</label>
         <div class="controls">
-          <div class="fileupload fileupload-new" data-provides="fileupload">
-            <span class="btn btn-file">
-              <span class="fileupload-new">Select file</span>
-              <span class="fileupload-exists">Change</span>
-              {{view SF.fileField}}
+          <div class="fileupload fileupload-new pull-left" data-provides="fileupload">
+            <span class="btn btn-file btn-primary">
+              <span class="fileupload-new">Upload Track</span>
+              <input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
             </span>
             <span class="fileupload-preview"></span>
           </div>
+          
+        </div>
+        {{/view}}
+        <div id="progress" class="progress progress-striped active">
+          <div class="bar" style="width: 0%;"></div>
         </div>
       </div>
       <div class="control-group">
@@ -36,7 +41,7 @@
           <label class="checkbox">
             {{view Ember.Checkbox checkedBinding="agreeToTerms"}} I agree to the {{#linkTo 'terms'}}terms of use{{/linkTo}}
           </label>
-          <button type="submit" class="btn"  {{bindAttr disabled="hasNotAgreed"}} {{action "tryUpload"}}>Upload</button>
+          <button type="submit" class="btn"  {{bindAttr disabled="hasNotAgreed"}} {{action "submit"}}>Upload</button>
         </div>
       </div>
     {{else}}

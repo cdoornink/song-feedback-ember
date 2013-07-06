@@ -8,8 +8,26 @@ SF.PlayerController = Ember.ObjectController.extend
   overall: 5
   comment: null
   playSong: (song) ->
+    audio = new Audio()
     @set('content', song)
+    audio.src = song.file
     @expandPlayer()
+    console.log audio
+    console.log audio[0]
+    audio.play()
+    audio.addEventListener "error", (failed = (e) ->
+      switch e.target.error.code
+        when e.target.error.MEDIA_ERR_ABORTED
+          alert "You aborted the video playback."
+        when e.target.error.MEDIA_ERR_NETWORK
+          alert "A network error caused the audio download to fail."
+        when e.target.error.MEDIA_ERR_DECODE
+          alert "The audio playback was aborted due to a corruption problem or because the video used features your browser did not support."
+        when e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED
+          alert "The video audio not be loaded, either because the server or network failed or because the format is not supported."
+        else
+          alert "An unknown error occurred."
+    ), true
   expandPlayer: ->
     $(".player").addClass("expanded")
   compressPlayer: ->

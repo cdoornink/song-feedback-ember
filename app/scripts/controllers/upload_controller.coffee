@@ -7,8 +7,10 @@ SF.UploadController = Ember.ObjectController.extend
   genre: null
   agreeToTerms: false
   hasNotAgreed: Ember.computed.not('agreeToTerms')
-  
-  tryUpload: ->
+  currentUploadedFile: null
+  uploadComplete: (file) ->
+    @set 'currentUploadedFile', file
+  submit: ->
     sfid = new Date().getTime()
     SF.Song.new
       song:
@@ -17,9 +19,11 @@ SF.UploadController = Ember.ObjectController.extend
         name: @name
         artist: @artist
         description: @description 
-        file: "figureOutLater"
+        file: @currentUploadedFile.url
+        size: @currentUploadedFile.size
+        type: @currentUploadedFile.type
         genre: @genre
         date: new Date()
     if SF.loginController.content.songs is undefined then SF.loginController.content.set 'songs', [] 
     SF.loginController.content.songs.push sfid
-    SF.User.update()
+    SF.User.update()    

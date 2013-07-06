@@ -66,7 +66,10 @@ module.exports = function(grunt) {
           'app/libs/excanvas.min.js',
           'app/libs/jquery.jqplot.min.js',
           'app/libs/jqplot.pieRenderer.min.js',
-          'app/libs/moment.js'
+          'app/libs/moment.js',
+          'app/libs/jQuery-File-Upload-master/js/vendor/jquery.ui.widget.js',
+          'app/libs/jQuery-File-Upload-master/js/jquery.iframe-transport.js',
+          'app/libs/jQuery-File-Upload-master/js/jquery.fileupload.js'
         ],
         dest: 'build/js/vendor.js'
       },
@@ -80,7 +83,10 @@ module.exports = function(grunt) {
           'app/libs/excanvas.min.js',
           'app/libs/jquery.jqplot.min.js',
           'app/libs/jqplot.pieRenderer.min.js',
-          'app/libs/moment.js'
+          'app/libs/moment.js',
+          'app/libs/jQuery-File-Upload-master/js/vendor/jquery.ui.widget.js',
+          'app/libs/jQuery-File-Upload-master/js/jquery.iframe-transport.js',
+          'app/libs/jQuery-File-Upload-master/js/jquery.fileupload.js'
         ],
         dest: 'build/js/vendor.js'
       },
@@ -115,6 +121,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: "app/img", src: ['**'], dest: "dist/dev/img"},
           {expand: true, cwd: "build/js", src: ['**'], dest: "dist/dev/js"},
           {expand: true, cwd: "build/css", src: ['**'], dest: "dist/dev/css"},
+          {expand: true, cwd: "server", src: ['**'], dest: "dist/dev/server"},
           {src: ['index.html'], dest: "dist/dev/"},
           {src: ['favicon.ico'], dest: "dist/dev/"}
         ]
@@ -124,8 +131,19 @@ module.exports = function(grunt) {
           {expand: true, cwd: "app/img", src: ['**'], dest: "dist/prod/img"},
           {expand: true, cwd: "build/js", src: ['**'], dest: "dist/prod/js"},
           {expand: true, cwd: "build/prodcss", src: ['**'], dest: "dist/prod/css"},
+          {expand: true, cwd: "server", src: ['**'], dest: "dist/prod/server"},
           {src: ['index.html'], dest: "dist/prod/"},
           {src: ['favicon.ico'], dest: "dist/prod/"}
+        ]
+      },
+      test: {
+        files: [
+          {expand: true, cwd: "app/img", src: ['**'], dest: "../test/img"},
+          {expand: true, cwd: "build/js", src: ['**'], dest: "../test/js"},
+          {expand: true, cwd: "build/css", src: ['**'], dest: "../test/css"},
+          {expand: true, cwd: "server", src: ['**'], dest: "../test/server"},
+          {src: ['index.html'], dest: "../test/"},
+          {src: ['favicon.ico'], dest: "../test/"}
         ]
       }
     },
@@ -164,4 +182,5 @@ module.exports = function(grunt) {
     server.listen(3000);
   });  
   grunt.registerTask('prod', ['clean:prod', 'ember_templates', 'coffee', 'sass', 'concat:prodVendor', 'concat:prodApp', 'concat:styles', 'cssmin', 'uglify', 'copy:prod']);
+  grunt.registerTask('test', ['clean:prod', 'ember_templates', 'coffee', 'sass', 'concat:prodVendor', 'concat:prodApp', 'concat:styles', 'copy:test']);
 };
