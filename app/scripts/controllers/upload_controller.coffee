@@ -26,4 +26,12 @@ SF.UploadController = Ember.ObjectController.extend
         date: new Date()
     if SF.loginController.content.songs is undefined then SF.loginController.content.set 'songs', [] 
     SF.loginController.content.songs.push sfid
-    SF.User.update()    
+    SF.User.update()
+    @set 'name', null
+    @set 'artist', null
+    @set 'description', null
+    @set 'src', null
+    @set 'agreeToTerms', false
+    @set 'genre', null
+    @set 'currentUploadedFile', null 
+    this.transitionToRoute 'songs'   
