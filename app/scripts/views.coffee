@@ -1,5 +1,9 @@
 SF.ApplicationView = Ember.View.extend
   classNames: ['application-container']
+  didInsertElement: ->
+    $("#jquery_jplayer_1").jPlayer
+      swfPath: "/js"
+      supplied: "mp3"
 
 SF.PlayerView = Ember.View.extend
   classNames: ['player']
@@ -61,6 +65,12 @@ SF.AudioFileView = Ember.View.extend
     that = this
     $('#fileupload').fileupload
       dataType: 'json'
+      add: (e, data) ->
+        uploadFile = data.files[0];
+        if (!(/\.(mp3)$/i).test(uploadFile.name))
+          alert "You can only upload mp3 files."
+        else
+          data.submit()
       progressall: (e, data) ->
         progress = (data.loaded / data.total) * 100
         $('#progress .bar').css 'width', progress + '%'
