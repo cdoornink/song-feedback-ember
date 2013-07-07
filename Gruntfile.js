@@ -124,7 +124,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: "build/js", src: ['**'], dest: "dist/dev/js"},
           {expand: true, cwd: "build/css", src: ['**'], dest: "dist/dev/css"},
           {expand: true, cwd: "server", src: ['**'], dest: "dist/dev/server"},
-          {src: ['app/libs/jQuery.jPlayer.2.4.0/Jplayer.swf'], dest: "dist/dev/js/"},
+          {expand: true, src: ['Jplayer.swf'], dest: "dist/dev/js/"},
           {src: ['index.html'], dest: "dist/dev/"},
           {src: ['favicon.ico'], dest: "dist/dev/"}
         ]
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: "build/js", src: ['**'], dest: "dist/prod/js"},
           {expand: true, cwd: "build/prodcss", src: ['**'], dest: "dist/prod/css"},
           {expand: true, cwd: "server", src: ['**'], dest: "dist/prod/server"},
-          {src: ['app/libs/jQuery.jPlayer.2.4.0/Jplayer.swf'], dest: "dist/prod/js/"},
+          {expand: true, src: ['Jplayer.swf'], dest: "dist/prod/js/"},
           {src: ['index.html'], dest: "dist/prod/"},
           {src: ['favicon.ico'], dest: "dist/prod/"}
         ]
@@ -146,7 +146,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: "build/js", src: ['**'], dest: "../test/js"},
           {expand: true, cwd: "build/css", src: ['**'], dest: "../test/css"},
           {expand: true, cwd: "server", src: ['**'], dest: "../test/server"},
-          {src: ['app/libs/jQuery.jPlayer.2.4.0/Jplayer.swf'], dest: "../test/js/"},
+          {expand: true, src: ['Jplayer.swf'], dest: "../test/js/"},
           {src: ['index.html'], dest: "../test/"},
           {src: ['favicon.ico'], dest: "../test/"}
         ]
