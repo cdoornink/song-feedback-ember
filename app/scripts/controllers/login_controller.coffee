@@ -10,7 +10,10 @@ SF.LoginController = Ember.ObjectController.extend
   
   tryLogin: (auto) ->
     that = this
-    pass = md5(@password) if @password
+    if @password and !auto
+      pass = md5(@password) 
+    else if @password
+      pass = @password
     SF.api "auth", "POST", {email:@username,password:pass}, (response) ->
       if response.user
         user = SF.User.create()
