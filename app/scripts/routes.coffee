@@ -30,6 +30,7 @@ SF.LogoutRoute = Ember.Route.extend
     SF.loginController.set 'password', null
     SF.loginController.set 'username', null
     SF.loginController.set 'id', null
+    SF.ip (response) -> SF.loginController.set 'ip', response
     @transitionTo 'index'
 
 SF.SongsRoute = Ember.Route.extend

@@ -7,6 +7,15 @@ SF.PlayerController = Ember.ObjectController.extend
   creativity: 5
   overall: 5
   comment: null
+  confirmFeedback: false
+  flashConfirmation: (->
+    if @get 'confirmFeedback'
+      $('.confirm-feedback').fadeIn()
+      @set 'queryTimeout', setTimeout ( ->
+        $(".confirm-feedback").fadeOut()
+      ), 4000
+    @set 'confirmFeedback', false
+  ).observes('confirmFeedback')
   playSong: (song) ->
     @set('content', song)
     $("#jquery_jplayer_1").jPlayer "setMedia", mp3: song.file
@@ -33,14 +42,14 @@ SF.PlayerController = Ember.ObjectController.extend
       production: @production
       user: me or ip
       date: new Date()
-    
+
     if reviews is undefined or reviews.length is 0
       @content.set "reviews", [review]
     else
       reviews.getEach('user').forEach (u,i) -> 
-        if u is me or u is ip
-          reviews.splice(i)
-          rereviewed = true
+        if (me and u is me) or (!me and u is ip)
+          reviews.splice(i,1)
+          rereviewed = true  
       reviews.addObject review
     
     if @comment isnt null
@@ -66,5 +75,7 @@ SF.PlayerController = Ember.ObjectController.extend
     
     SF.Song.update @content.id, SF.Song.songToJSON(@content)
     SF.User.update() if me
+    @set 'confirmFeedback', true
+  
     
 SF.playerController = SF.PlayerController.create()

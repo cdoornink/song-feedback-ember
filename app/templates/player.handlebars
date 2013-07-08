@@ -1,40 +1,21 @@
 {{view SF.PlayerGrippyView}}
-<div class="song-image">
-  <img src="http://userserve-ak.last.fm/serve/_/232628/Dave+Matthews+Band.jpg" height="180" width="180">
-
-  <div class="song-info">
+<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+<div id="jp_container_1" class="jp-audio">
+  <div class="jp-controls">
+    <a href="javascript:;" class="jp-play" tabindex="1"><i class="icon-play"></i></a>
+    <a href="javascript:;" class="jp-pause" tabindex="1"><i class="icon-pause"></i></a>
+  </div>
+  <div class="jp-progress"><div class="jp-play-bar"></div></div>
+  <div class="jp-no-solution"><span>Update Required</span>To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.</div>
+</div>
+<div class="song-info">
+  {{#if SF.playerController.content.name}}
     <div class="song-name">{{SF.playerController.content.name}}</div>
     <div class="song-artist">{{SF.playerController.content.artist}}</div>
     <div class="song-description">{{SF.playerController.content.description}}</div>
-  </div>
-</div>
-<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-<div id="jp_container_1" class="jp-audio">
-  <div class="jp-type-single">
-    <div class="jp-gui jp-interface">
-      <ul class="jp-controls">
-        <li><a href="javascript:;" class="jp-play" tabindex="1"><i class="icon-play"></i></a></li>
-        <li><a href="javascript:;" class="jp-pause" tabindex="1"><i class="icon-pause"></i></a></li>
-        <li><a href="javascript:;" class="jp-stop" tabindex="1"><i class="icon-stop"></i></a></li>
-      </ul>
-      <div class="jp-progress">
-        <div class="jp-seek-bar">
-          <div class="jp-play-bar"></div>
-        </div>
-      </div>
-      <div class="jp-volume-bar">
-        <div class="jp-volume-bar-value"></div>
-      </div>
-      <div class="jp-time-holder">
-        <div class="jp-current-time"></div>
-        <div class="jp-duration"></div>
-      </div>
-    </div>
-    <div class="jp-no-solution">
-      <span>Update Required</span>
-      To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-    </div>
-  </div>
+  {{else}}
+    <div class="song-description">No song currently selected</div>
+  {{/if}}
 </div>
 <div class="ratings-container">
   <div class="row-fluid">
@@ -89,4 +70,5 @@
 <div class="feedback-form-bottom">
   {{view Ember.TextArea valueBinding="SF.playerController.comment" placeholder="Comment"}}
   <button type="submit" class="btn" {{action "submitFeedback" target="SF.playerController"}}>Submit Feedback</button>
+  <div class="confirm-feedback alert alert-success">Thanks! You have successfully reviewed this song!</div>
 </div>

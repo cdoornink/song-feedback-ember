@@ -2,6 +2,7 @@
 @media (min-width: 767px) 
   body
     height: calc(100% - 40px)
+    height: -webkit-calc(100% - 40px)
   
   .application-container
     height: 100%
@@ -9,6 +10,7 @@
   .main
     float: right
     width: calc(100% - 250px)
+    width: -webkit-calc(100% - 250px)
     height: 100%
     margin: 0 15px
     padding: 0
@@ -19,7 +21,6 @@
     background: #F2F2F2
     float: left
     position: fixed
-    box-shadow: 0 0 8px #aaa
     overflow: auto
     .player-grippy
       display: none
@@ -39,6 +40,7 @@
   
   .application-container
     height: calc(100% - 10px)
+    height: -webkit-calc(100% - 10px)
     overflow-x: hidden
   
   .main
@@ -71,6 +73,7 @@
       cursor: pointer
       left: 43%
       left: calc(50% - 25px)
+      left: -webkit-calc(50% - 25px)
   .player.expanded
     height: 300px
     .player-grippy

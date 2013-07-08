@@ -1,35 +1,29 @@
-.song-image
-  margin: 20px 20px 0
+.song-info
   position: relative
-  height: 180px
-  width: 180px
-  img
-    height: 180px
-    width: 180px
-    box-shadow: 0 0 10px #999
-  .song-info
-    background-color: rgba(3,3,3,0.6)
-    color: white
-    position: absolute
-    bottom: 0
-    width: 180px
-    line-height: 15px
-    .song-name
-      font-size: 14px
-      font-weight: 300
-      margin: 3px 0 0
-      padding: 0 5px
-    .song-artist
-      font-size: 11px
-      font-weight: 500
-      padding: 0 5px 0
-    .song-description
-      font-size: 11px
-      font-weight: 300
-      padding: 0 5px 5px
-      max-height: 132px
-      overflow: hidden
+  width: 190px
+  line-height: 15px
+  padding: 5px 15px
+  .song-name
+    font-size: 14px
+    font-weight: 300
+    margin: 3px 0 0
+    padding: 0 5px
+  .song-artist
+    font-size: 11px
+    font-weight: 500
+    padding: 0 5px 0
+  .song-description
+    font-size: 11px
+    font-weight: 300
+    padding: 0 5px 5px
+    max-height: 132px
+    overflow: hidden
 
+@media (max-width: 767px)
+  .song-info
+    height: 29px
+    overflow: hidden
+    
 .ratings-container
   margin: 8px 10px 2px
   padding: 0 10px
@@ -88,6 +82,7 @@
   margin: 3px 0 0
 .feedback-form-bottom
   height: 200px
+  position: relative
 .feedback-form-bottom textarea
   margin: 20px 20px 10px
   width: 167px
@@ -95,36 +90,58 @@
 .feedback-form-bottom button
   margin: 0 20px
   width: 180px
-  
+.confirm-feedback
+  display: none
+  padding: 5px
+  margin: 0 15px 15px
+  font-size: 12px
+  position: absolute
+  bottom: 17px
+    
 @media (max-width: 767px) 
-  .song-image
-    margin: 0
-    height: 70px
-    width: 100%
-    img
-      box-shadow: 0 0 3px #999
-      float: left
-      width: 60px
-      height: 60px
-      margin: 5px
-    .song-info
-      background: none
-      color: #444
-      position: relative
-      width: calc(100% - 80px) 
-      float: left
-      margin-top: 10px
-      .song-description
-        max-height: 27px
   .ratings-container
     height: auto
     margin: 5px 0
+  .feedback-form-bottom
+    height: 122px
   .feedback-form-bottom textarea
     margin: 5px
     height: 40px
     width: calc(100% - 23px)
+    width: -webkit-calc(100% - 23px)
   .feedback-form-bottom button
     width: calc(100% - 10px)
+    width: -webkit-calc(100% - 10px)
     margin: 0 5px
+  .confirm-feedback
+    margin: 0 5px 15px
+    width: calc(100% - 20px)
+    width: -webkit-calc(100% - 20px)
+
+
+  
+.jp-audio
+  margin: 10px 0 0
+  overflow: auto
+
+.jp-controls
+  float: left
+  margin: 0 4px
+
+.jp-progress
+  float: left
+  background: #d9d7d5
+  width: calc(100% - 30px)
+  width: -webkit-calc(100% - 30px)
+  height: 11px
+  padding: 0
+  margin: 5px 0
+  overflow: hidden
+
+.jp-play-bar
+  background: $sf-color1
+  width: 0px
+  height: 100%
+  overflow: hidden
   
     
