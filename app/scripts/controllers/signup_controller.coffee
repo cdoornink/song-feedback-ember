@@ -20,12 +20,13 @@ SF.SignupController = Ember.ObjectController.extend
   ).observes('email')
   
   trySignup: ->
+    pass = md5(@password)
     data = 
         sfid: new Date().getTime()
         first_name: @firstName
         last_name: @lastName
         email: @email 
-        password: @password
+        password: pass
         comments: []
         reviews: []
         songs: []
