@@ -7,5 +7,8 @@ Ember.Handlebars.registerBoundHelper "mdy", (date) ->
 Ember.Handlebars.registerBoundHelper "bargraph", (n) ->
     new Handlebars.SafeString('<div class="bar" style="width: '+n*8+'%"></div>')
       
+Ember.Handlebars.registerBoundHelper "rounded", (n) ->
+  Math.round( n * 10 ) / 10;
+      
 Ember.TextField.reopen
   attributeBindings: ["required"]

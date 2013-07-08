@@ -19,6 +19,8 @@ SF.PlayerController = Ember.ObjectController.extend
   togglePlayerView: ->
     if $(".player").css("height") is "300px" then @compressPlayer() else @expandPlayer()
   submitFeedback: ->
+    me = SF.loginController.get('content.id')
+    ip = SF.loginController.get('content.ip')
     return if @get('content') is null
     reviews = @get('content').get("reviews")
     rereviewed = false
@@ -29,14 +31,14 @@ SF.PlayerController = Ember.ObjectController.extend
       musicianship: @musicianship
       creativity: @creativity
       production: @production
-      user: SF.loginController.get('content.id')
+      user: me or ip
       date: new Date()
     
     if reviews is undefined or reviews.length is 0
       @content.set "reviews", [review]
     else
       reviews.getEach('user').forEach (u,i) -> 
-        if u is SF.loginController.get('content.id')
+        if u is me or u is ip
           reviews.splice(i)
           rereviewed = true
       reviews.addObject review
@@ -44,8 +46,8 @@ SF.PlayerController = Ember.ObjectController.extend
     if @comment isnt null
       comment = 
         user: 
-          id: SF.loginController.get('content.id')
-          fullName: SF.loginController.content.firstName + " " + SF.loginController.content.lastName
+          id: me or ip
+          fullName: if me then SF.loginController.content.firstName + " " + SF.loginController.content.lastName else "Anonymous User"
         message: @comment
         date: new Date()
       comments = @get('content').get("comments")
@@ -54,14 +56,15 @@ SF.PlayerController = Ember.ObjectController.extend
       else
         comments.addObject comment
       @set 'comment', null
-      if SF.loginController.content.comments is undefined then SF.loginController.content.set 'comments', [] 
-      SF.loginController.content.comments.push @content.id  
+      if me
+        if SF.loginController.content.comments is undefined then SF.loginController.content.set 'comments', [] 
+        SF.loginController.content.comments.push @content.id  
       
-    unless rereviewed
+    if me and !rereviewed
       if SF.loginController.content.reviews is undefined then SF.loginController.content.set 'reviews', [] 
       SF.loginController.content.reviews.push @content.id
     
     SF.Song.update @content.id, SF.Song.songToJSON(@content)
-    SF.User.update()
+    SF.User.update() if me
     
 SF.playerController = SF.PlayerController.create()

@@ -17,6 +17,7 @@ SF.ApplicationRoute = Ember.Route.extend
     SF.loginController.set 'password', localStorage.getItem('password')
     SF.loginController.set 'id', localStorage.getItem('id')
     SF.loginController.tryLogin(true)
+    SF.ip (response) -> SF.loginController.set 'ip', response
 
 SF.IndexRoute = Ember.Route.extend
   redirect: ->

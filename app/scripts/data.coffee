@@ -8,3 +8,13 @@ SF.api = (req, type, data, callback) ->
     type: type
     data: data
     success: (response) -> callback(response) if response
+    
+SF.ip = (callback) ->
+  console.log "make get request for ip"
+  $.ajax
+    url: "http://jsonip.appspot.com/?callback=getip"
+    type: "GET"
+    dataType: 'json'
+    complete: (r) ->
+      jr = JSON.parse(r.responseText.substring(r.responseText.indexOf('{'),r.responseText.indexOf(')')))
+      callback(jr.ip) if jr.ip 
