@@ -1,6 +1,6 @@
 <div class="signup-page">
+  <h2>Sign Up</h2>
   <form class="form-horizontal">
-    <h2>Sign Up</h2>
     <div class="control-group first-name-signup-group">
       <label class="control-label">First Name</label>
       <div class="controls">{{view Ember.TextField valueBinding="firstName" required="true"}}</div>
@@ -28,6 +28,9 @@
         </label>
         <button type="submit" class="btn"  {{bindAttr disabled="hasNotAgreed"}} {{action "trySignup"}}>Sign Up</button>
       </div>
+    </div>
+    <div class="control-group">
+      <div class="controls"><p>Already registered? {{#linkTo 'login'}}Sign In{{/linkTo}}</p></div>
     </div>
   </form>
 </div>

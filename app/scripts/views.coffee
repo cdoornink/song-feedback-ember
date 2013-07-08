@@ -4,6 +4,20 @@ SF.ApplicationView = Ember.View.extend
     $("#jquery_jplayer_1").jPlayer
       swfPath: "/js"
       supplied: "mp3"
+      timeupdate: (e) ->
+        if e.jPlayer.status.currentTime / e.jPlayer.status.duration > .5
+          SF.playerController.set 'canSubmit', true
+        else
+          SF.playerController.set 'canSubmit', false
+
+SF.IndexView = Ember.View.extend
+  didInsertElement: ->
+    console.log "heyo!"
+    $(".player").hide()
+    $(".main").addClass('fullscreen')
+  willDestroyElement: ->
+    $(".player").show()
+    $(".main").removeClass('fullscreen')
 
 SF.PlayerView = Ember.View.extend
   classNames: ['player']

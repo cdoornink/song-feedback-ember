@@ -69,6 +69,6 @@
 </div>
 <div class="feedback-form-bottom">
   {{view Ember.TextArea valueBinding="SF.playerController.comment" placeholder="Comment"}}
-  <button type="submit" class="btn" {{action "submitFeedback" target="SF.playerController"}}>Submit Feedback</button>
+  <button type="submit" {{bindAttr class=":btn SF.playerController.canSubmit"}} {{action "submitFeedback" target="SF.playerController"}}>Submit Feedback</button>
   <div class="confirm-feedback alert alert-success">Thanks! You have successfully reviewed this song!</div>
 </div>

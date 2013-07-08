@@ -51,3 +51,7 @@ SF.MySongsRoute = Ember.Route.extend
     id = SF.loginController.get('id')
     if id then mysongs_model = SF.Song.findForUser(id) else @transitionTo 'songs'
     controller.set "songs", mysongs_model
+
+SF.UploadRoute = Ember.Route.extend
+  redirect: ->
+    if SF.loginController.get('username') is null then @transitionTo 'login'

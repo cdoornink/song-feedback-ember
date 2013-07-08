@@ -7,6 +7,7 @@ SF.PlayerController = Ember.ObjectController.extend
   creativity: 5
   overall: 5
   comment: null
+  canSubmit: false
   confirmFeedback: false
   flashConfirmation: (->
     if @get 'confirmFeedback'
@@ -20,6 +21,8 @@ SF.PlayerController = Ember.ObjectController.extend
     @set('content', song)
     $("#jquery_jplayer_1").jPlayer "setMedia", mp3: song.file
     $("#jquery_jplayer_1").jPlayer "play"
+    $("#jquery_jplayer_1").jPlayer "timeupdate", (e) ->
+      console.log e.jPlayer.status.currentTime
     @expandPlayer()
   expandPlayer: ->
     $(".player").addClass("expanded")
@@ -28,6 +31,9 @@ SF.PlayerController = Ember.ObjectController.extend
   togglePlayerView: ->
     if $(".player").css("height") is "300px" then @compressPlayer() else @expandPlayer()
   submitFeedback: ->
+    unless @canSubmit
+      alert "You have to listen to at least half of a song before giving feedback on it."
+      return
     me = SF.loginController.get('content.id')
     ip = SF.loginController.get('content.ip')
     return if @get('content') is null

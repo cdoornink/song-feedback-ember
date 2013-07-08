@@ -128,6 +128,8 @@ module.exports = function(grunt) {
           {expand: true, cwd: "server", src: ['**'], dest: "dist/dev/server"},
           {expand: true, src: ['Jplayer.swf'], dest: "dist/dev/js/"},
           {src: ['index.html'], dest: "dist/dev/"},
+          {src: ['privacy_policy.html'], dest: "dist/dev/"},
+          {src: ['terms.html'], dest: "dist/dev/"},
           {src: ['favicon.ico'], dest: "dist/dev/"}
         ]
       },
@@ -139,6 +141,8 @@ module.exports = function(grunt) {
           {expand: true, cwd: "server", src: ['**'], dest: "dist/prod/server"},
           {expand: true, src: ['Jplayer.swf'], dest: "dist/prod/js/"},
           {src: ['index.html'], dest: "dist/prod/"},
+          {src: ['privacy_policy.html'], dest: "dist/prod/"},
+          {src: ['terms.html'], dest: "dist/prod/"},
           {src: ['favicon.ico'], dest: "dist/prod/"}
         ]
       },
@@ -150,6 +154,8 @@ module.exports = function(grunt) {
           {expand: true, cwd: "server", src: ['**'], dest: "../test/server"},
           {expand: true, src: ['Jplayer.swf'], dest: "../test/js/"},
           {src: ['index.html'], dest: "../test/"},
+          {src: ['privacy_policy.html'], dest: "../test/"},
+          {src: ['terms.html'], dest: "../test/"},
           {src: ['favicon.ico'], dest: "../test/"}
         ]
       }
