@@ -145,19 +145,6 @@ module.exports = function(grunt) {
           {src: ['terms.html'], dest: "dist/prod/"},
           {src: ['favicon.ico'], dest: "dist/prod/"}
         ]
-      },
-      test: {
-        files: [
-          {expand: true, cwd: "app/img", src: ['**'], dest: "../test/img"},
-          {expand: true, cwd: "build/js", src: ['**'], dest: "../test/js"},
-          {expand: true, cwd: "build/css", src: ['**'], dest: "../test/css"},
-          {expand: true, cwd: "server", src: ['**'], dest: "../test/server"},
-          {expand: true, src: ['Jplayer.swf'], dest: "../test/js/"},
-          {src: ['index.html'], dest: "../test/"},
-          {src: ['privacy_policy.html'], dest: "../test/"},
-          {src: ['terms.html'], dest: "../test/"},
-          {src: ['favicon.ico'], dest: "../test/"}
-        ]
       }
     },
     watch: {
@@ -195,5 +182,4 @@ module.exports = function(grunt) {
     server.listen(3000);
   });  
   grunt.registerTask('prod', ['clean:prod', 'ember_templates', 'coffee', 'sass', 'concat:prodVendor', 'concat:prodApp', 'concat:styles', 'cssmin', 'uglify', 'copy:prod']);
-  grunt.registerTask('test', ['clean:prod', 'ember_templates', 'coffee', 'sass', 'concat:prodVendor', 'concat:prodApp', 'concat:styles', 'copy:test']);
 };
