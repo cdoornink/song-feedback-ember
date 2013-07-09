@@ -1,7 +1,7 @@
 song-feedback-ember
 ===================
 
-Awesome single page application built with Ember.js and coffeescript.
+Awesome application built with Ember.js and coffeescript.
 
 Custom API hosted on heroku using mongoDb, node.js, and express.
 
