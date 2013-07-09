@@ -3,5 +3,5 @@ SF.MySongsController = Ember.ArrayController.extend
 
 SF.SongsController = Ember.ArrayController.extend
   songs: []
-  leastRated: ->
-    console.log "needs work"
+  # leastRated: ->
+#     #needs work, obviously

@@ -103,12 +103,10 @@ SF.Song.reopenClass
     songs
     
   new: (data) ->
-    SF.api "songs", "POST", data, (response) ->
-      console.log response
+    SF.api "songs", "POST", data
   
   update: (id, data) ->
-    SF.api "songs/"+id, "PUT", data, (response) ->
-      console.log response
+    SF.api "songs/"+id, "PUT", data
     
   songToJSON: (data) ->
     song = 

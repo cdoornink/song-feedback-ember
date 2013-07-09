@@ -21,8 +21,6 @@ SF.PlayerController = Ember.ObjectController.extend
     @set('content', song)
     $("#jquery_jplayer_1").jPlayer "setMedia", mp3: song.file
     $("#jquery_jplayer_1").jPlayer "play"
-    $("#jquery_jplayer_1").jPlayer "timeupdate", (e) ->
-      console.log e.jPlayer.status.currentTime
     @expandPlayer()
   expandPlayer: ->
     $(".player").addClass("expanded")

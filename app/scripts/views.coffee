@@ -12,7 +12,6 @@ SF.ApplicationView = Ember.View.extend
 
 SF.IndexView = Ember.View.extend
   didInsertElement: ->
-    console.log "heyo!"
     $(".player").hide()
     $(".main").addClass('fullscreen')
   willDestroyElement: ->
@@ -75,7 +74,6 @@ SF.PlayerGrippyView = Ember.View.extend
 
 SF.AudioFileView = Ember.View.extend
   didInsertElement: ->
-    console.log "inserted element"
     that = this
     $('#fileupload').fileupload
       dataType: 'json'
@@ -91,7 +89,6 @@ SF.AudioFileView = Ember.View.extend
       done: (e, data) ->
         $('#progress .bar').css 'width', '0%'
         $.each data.result.files, (index, file) ->
-          console.log file
           that.get('controller').uploadComplete(file)
           
 SF.UploadView = Ember.View.extend

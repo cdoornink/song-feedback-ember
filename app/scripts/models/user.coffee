@@ -13,10 +13,6 @@ SF.User = Ember.Object.extend
     @set("reviews", properties.reviews)
   
   canUpload: (->
-    console.log "checking"
-    console.log (3 - (@get('reviews').length % (@get('songs').length + 1)))
-    console.log @get('reviews').length
-    console.log @get('songs').length
     if @get('reviews').length / (@get('songs').length + 1) >= 3
       return true
     else
@@ -32,8 +28,7 @@ SF.User.reopenClass
     user
   
   update: ->
-    SF.api "users/"+SF.loginController.content.id, "PUT", SF.User.userToJSON(), (response) ->
-      console.log response
+    SF.api "users/"+SF.loginController.content.id, "PUT", SF.User.userToJSON()
     
   userToJSON:  ->
     user = 
