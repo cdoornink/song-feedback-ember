@@ -11,6 +11,18 @@ SF.UploadController = Ember.ObjectController.extend
   uploadComplete: (file) ->
     @set 'currentUploadedFile', file
   submit: ->
+    dontSend = false
+    if @get('currentUploadedFile') is null      
+      $('.upload-file-group').addClass('error')
+      alert "You must select an mp3 file to upload."
+      dontSend = true
+    if @name is null or @name.length is 0
+      $('.song-name-group').addClass('error')
+      dontSend = true
+    if @artist is null or @artist.length is 0
+      $('.artist-name-group').addClass('error')
+      dontSend = true
+    return if dontSend
     sfid = new Date().getTime()
     SF.Song.new
       song:

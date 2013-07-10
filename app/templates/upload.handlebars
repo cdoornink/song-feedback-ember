@@ -2,16 +2,16 @@
   <form class="form-horizontal">
     <h2>Upload</h2>
     {{#if SF.loginController.canUpload}}
-      <div class="control-group">
+      <div class="control-group song-name-group">
         <label class="control-label">Song Name</label>
         <div class="controls">{{view Ember.TextField valueBinding="name"}}</div>
       </div>
-      <div class="control-group">
+      <div class="control-group artist-name-group">
         <label class="control-label">Artist Name</label>
         <div class="controls">{{view Ember.TextField valueBinding="artist"}}</div>
       </div>
       {{#view SF.AudioFileView contentBinding="this"}}
-      <div class="control-group">
+      <div class="control-group upload-file-group">
         <label class="control-label">Audio File</label>
         <div class="controls">
           <div class="fileupload fileupload-new pull-left" data-provides="fileupload">
@@ -23,16 +23,20 @@
           </div>
           
         </div>
-        {{/view}}
-        <div id="progress" class="progress progress-striped active">
-          <div class="bar" style="width: 0%;"></div>
+      </div>
+      {{/view}}
+      <div class="control-group">
+        <div class="controls">
+          <div id="progress" class="progress progress-striped active" style="width: 220px; margin-bottom: 0">
+            <div class="bar" style="width: 0%;"></div>
+          </div>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label">Description</label>
         <div class="controls">{{view Ember.TextArea valueBinding="description"}}</div>
       </div>
-      <div class="control-group">
+      <div class="control-group genre-select-group">
         <label class="control-label">Genre</label>
         <div class="controls">{{view Ember.Select contentBinding="SF.genres" valueBinding="genre"}}</div>
       </div>    
