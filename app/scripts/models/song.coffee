@@ -1,4 +1,4 @@
-SF.genres = ["Rock/Pop", "Rap/Hip-Hop", "Country", "Alt/Inde", "Singer-Songwriter", "Electronica"];
+SF.genres = ["Rock", "Rap/Hip-Hop", "Pop", "Country", "Indie", "Singer/Songwriter", "Folk", "Electronica", "Other"];
 
 SF.Song = Ember.Object.extend
   comments: []
