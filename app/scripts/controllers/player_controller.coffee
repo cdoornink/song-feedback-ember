@@ -22,6 +22,7 @@ SF.PlayerController = Ember.ObjectController.extend
     $("#jquery_jplayer_1").jPlayer "setMedia", mp3: song.file
     $("#jquery_jplayer_1").jPlayer "play"
     @expandPlayer()
+    _gaq.push(['_trackEvent', 'Songs', 'Play', song.name])
   expandPlayer: ->
     $(".player").addClass("expanded")
   compressPlayer: ->
@@ -80,6 +81,7 @@ SF.PlayerController = Ember.ObjectController.extend
     SF.Song.update @content.id, SF.Song.songToJSON(@content)
     SF.User.update() if me
     @set 'confirmFeedback', true
+    _gaq.push(['_trackEvent', 'Songs', 'Review', @get('content.name')])
   
     
 SF.playerController = SF.PlayerController.create()

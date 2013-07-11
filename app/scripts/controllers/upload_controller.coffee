@@ -39,6 +39,7 @@ SF.UploadController = Ember.ObjectController.extend
     if SF.loginController.content.songs is undefined then SF.loginController.content.set 'songs', [] 
     SF.loginController.content.songs.push sfid
     SF.User.update()
+    _gaq.push(['_trackEvent', 'Songs', 'Upload', @name])
     @set 'name', null
     @set 'artist', null
     @set 'description', null
