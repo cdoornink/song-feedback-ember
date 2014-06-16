@@ -3,6 +3,6 @@
 </div>
 <div class="song-list">
   {{#each song in songs}}
-  {{view SF.SongListItemView contentBinding='song'}}
+    {{song-list-item song=song}}
   {{/each}}
 </div>

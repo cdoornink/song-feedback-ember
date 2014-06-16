@@ -1,0 +1,7 @@
+/* TEAM */
+	Chris Doornink
+	chrisdoornink [at] gmail [dot] com
+	Seattle, Washington, USA
+
+/* SITE */
+  Built with Ember.js and Coffeescript

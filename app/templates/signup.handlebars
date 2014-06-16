@@ -26,11 +26,11 @@
         <label class="checkbox">
           {{view Ember.Checkbox checkedBinding="agreeToTerms"}} I agree to the <a href="/terms.html" target="_blank">terms of use</a>
         </label>
-        <button type="submit" class="btn"  {{bindAttr disabled="hasNotAgreed"}} {{action "trySignup"}}>Sign Up</button>
+        <button type="submit" class="btn"  {{bind-attr disabled="hasNotAgreed"}} {{action "trySignup"}}>Sign Up</button>
       </div>
     </div>
     <div class="control-group">
-      <div class="controls"><p>Already registered? {{#linkTo 'login'}}Sign In{{/linkTo}}</p></div>
+      <div class="controls"><p>Already registered? {{#link-to 'login'}}Sign In{{/link-to}}</p></div>
     </div>
   </form>
 </div>

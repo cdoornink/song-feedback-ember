@@ -22,11 +22,6 @@ SF.PlayerView = Ember.View.extend
   classNames: ['player']
   templateName: "player"
 
-SF.SongListItemView = Ember.View.extend
-  templateName: 'song-list-item'
-  click: ->
-    SF.playerController.playSong @get('content')
-
 SF.SongPagePlayView = Ember.View.extend
   click: ->
     SF.playerController.playSong @get('content')

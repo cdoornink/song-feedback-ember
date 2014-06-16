@@ -6,15 +6,27 @@
     <a href="javascript:;" class="jp-pause" tabindex="1"><i class="icon-pause"></i></a>
   </div>
   <div class="jp-progress"><div class="jp-play-bar"></div></div>
-  <div class="jp-no-solution"><span>Update Required</span>To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.</div>
+  <div class="jp-no-solution">
+    <span>Update Required</span>To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+  </div>
 </div>
 <div class="song-info">
   {{#if SF.playerController.content.name}}
-    <div class="song-name">{{SF.playerController.content.name}}</div>
-    <div class="song-artist">{{SF.playerController.content.artist}}</div>
-    <div class="song-description">{{SF.playerController.content.description}}</div>
+    <div class="song-name">
+      {{#link-to 'song' SF.playerController.content}}
+        {{SF.playerController.content.name}}
+      {{/link-to}}
+    </div>
+    <div class="song-artist">
+      {{SF.playerController.content.artist}}
+    </div>
+    <div class="song-description">
+      {{SF.playerController.content.description}}
+    </div>
   {{else}}
-    <div class="song-description">No song currently selected</div>
+    <div class="song-description">
+      No song currently selected
+    </div>
   {{/if}}
 </div>
 <div class="ratings-container">
@@ -69,6 +81,6 @@
 </div>
 <div class="feedback-form-bottom">
   {{view Ember.TextArea valueBinding="SF.playerController.comment" placeholder="Comment"}}
-  <button type="submit" {{bindAttr class=":btn SF.playerController.canSubmit"}} {{action "submitFeedback" target="SF.playerController"}}>Submit Feedback</button>
+  <button type="submit" {{bind-attr class=":btn SF.playerController.canSubmit"}} {{action "submitFeedback" target="SF.playerController"}}>Submit Feedback</button>
   <div class="confirm-feedback alert alert-success">Thanks! You have successfully reviewed this song!</div>
 </div>

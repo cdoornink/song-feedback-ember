@@ -1,0 +1,32 @@
+<div class="row-fluid song-list-item-container">
+  {{#unless song.reviews}}
+    <div class="new-banner"></div>
+  {{/unless}}
+  <div class="song-list-item">
+    <div class="span4 song-list-left">
+      <div class="sf-play pull-left" {{action "play"}}><i class="icon-play icon-white"></i></div>
+      <div class="title">{{#link-to "song" song}}{{song.name}}{{/link-to}}</div>
+      <div class="artist">{{song.artist}}</div> 
+    </div>
+    {{#link-to "song" song}}
+    <div class="span2 score-summary">
+      <div class="vocals-bar">{{minibar song.vocals}}</div>
+      <div class="songwriting-bar">{{minibar song.songwriting}}</div>
+      <div class="musicianship-bar">{{minibar song.musicianship}}</div>
+      <div class="creativity-bar">{{minibar song.creativity}}</div>
+      <div class="production-bar">{{minibar song.production}}</div>
+      <div class="overall-bar">{{minibar song.overall}}</div>
+    </div>
+    {{/link-to}}
+    <div class="span2 hidden-phone">      
+      <div class="genre">{{song.genre}}</div>
+    </div>
+    <div class="span2 hidden-phone">
+      {{share-container item=song}}
+    </div>
+    
+    <div class="span2 hidden-phone">   
+      <div class="date">{{mdy song.date}}</div>
+    </div>
+  </div>
+</div>

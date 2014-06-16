@@ -23,12 +23,13 @@ module.exports = function(grunt) {
       compile: {
         files: {
           'build/js/app.js': [
-            'app/scripts/routes.coffee', 
-            'app/scripts/controllers/*', 
-            'app/scripts/views.coffee', 
-            'app/scripts/helpers.coffee', 
-            'app/scripts/data.coffee', 
-            'app/scripts/models/song.coffee', 
+            'app/scripts/routes.coffee',
+            'app/scripts/controllers/*',
+            'app/scripts/views.coffee',
+            'app/scripts/components/*',
+            'app/scripts/helpers.coffee',
+            'app/scripts/data.coffee',
+            'app/scripts/models/song.coffee',
             'app/scripts/models/user.coffee'
           ]
         }
@@ -61,7 +62,7 @@ module.exports = function(grunt) {
           'app/libs/jquery-1.8.3.min.js',
           'app/libs/bootstrap.min.js',
           'app/libs/bootstrap-fileupload.js',
-          'app/libs/handlebars-1.0.0.rc.3.js',
+          'app/libs/handlebars-v1.3.0.js',
           'app/libs/ember.js',
           'app/libs/excanvas.min.js',
           'app/libs/jquery.jqplot.min.js',

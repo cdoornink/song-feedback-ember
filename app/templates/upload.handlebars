@@ -45,7 +45,7 @@
           <label class="checkbox">
             {{view Ember.Checkbox checkedBinding="agreeToTerms"}} I agree to the <a href="/terms.html" target="_blank">terms of use</a>
           </label>
-          <button type="submit" class="btn"  {{bindAttr disabled="hasNotAgreed"}} {{action "submit"}}>Upload</button>
+          <button type="submit" class="btn"  {{bind-attr disabled="hasNotAgreed"}} {{action "submit"}}>Upload</button>
         </div>
       </div>
     {{else}}

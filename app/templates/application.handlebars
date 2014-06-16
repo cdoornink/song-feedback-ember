@@ -9,9 +9,9 @@
       <a class="brand" href="#">Song Feedback</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li>{{#linkTo songs}} Browse {{/linkTo}}</li>
+          <li>{{#link-to "songs"}} Browse {{/link-to}}</li>
           {{#if SF.loginController.content.firstName}}
-          <li>{{#linkTo my-songs}}My Feedback {{/linkTo}}</li>
+          <li>{{#link-to "my-songs"}}My Feedback {{/link-to}}</li>
           {{/if}}
         </ul>
         <ul class="nav  pull-right">
@@ -22,12 +22,12 @@
                 <b class="caret" style="color:white"></b>
               </a>
               <ul class="dropdown-menu">
-                <li>{{#linkTo upload}}Upload Song{{/linkTo}}</li>
-                <li>{{#linkTo logout}}Sign out{{/linkTo}}</li>
+                <li>{{#link-to "upload"}}Upload Song{{/link-to}}</li>
+                <li>{{#link-to "logout"}}Sign out{{/link-to}}</li>
               </ul>
             </li>
           {{else}}
-            <li>{{#linkTo login}}Sign In{{/linkTo}}</li>
+            <li>{{#link-to "login"}}Sign In{{/link-to}}</li>
           {{/if}}
         </ul>
       </div>

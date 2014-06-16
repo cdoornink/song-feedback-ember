@@ -59,6 +59,10 @@ SF.Song = Ember.Object.extend
     [['Vocals', @get('vocals')],['Songwriting', @get('songwriting')],['Musicianship', @get('musicianship')],['Creativity', @get('creativity')],['Production', @get('production')]]
   ).property('production')
   
+  isMine: (->
+    SF.loginController.get('id') == @get('user')
+  ).property('user')
+  
   setSongProperties: (properties) ->
     @set("id", properties.sfid)
     @set("bson", properties._id)

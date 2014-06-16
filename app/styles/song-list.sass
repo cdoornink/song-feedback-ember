@@ -6,7 +6,6 @@
   position: relative
   border-bottom: 1px solid #E6E8E8
   border-top: 1px solid #FFF
-  cursor: pointer
 
 @media (min-width: 767px)
   .song-list-item-container:hover  
@@ -17,10 +16,13 @@
 
 .song-list-item
   overflow: hidden
-  padding: 12px 0 12px 13px
+  padding: 0 0 0 13px
   margin: 0
+  .song-list-left, .genre, .share-container, .date
+    padding: 12px 0
 
-.sf-play 
+.sf-play
+  cursor: pointer
   width: 18px
   height: 18px
   border-radius: 15px
