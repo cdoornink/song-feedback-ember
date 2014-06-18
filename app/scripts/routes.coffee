@@ -16,6 +16,9 @@ SF.ApplicationRoute = Ember.Route.extend
     SF.loginController.set 'id', localStorage.getItem('id')
     SF.loginController.tryLogin(true)
     SF.ip (response) -> SF.loginController.set 'ip', response
+  actions:
+    closeUploadConfirmation: ->
+      SF.UploadConfirmationController.set('content', null)
 
 SF.IndexRoute = Ember.Route.extend
   redirect: ->

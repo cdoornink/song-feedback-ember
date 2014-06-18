@@ -39,6 +39,7 @@ SF.UploadController = Ember.ObjectController.extend
     if SF.loginController.content.songs is undefined then SF.loginController.content.set 'songs', [] 
     SF.loginController.content.songs.push sfid
     SF.User.update()
+    SF.UploadConfirmationController.set('content', {name: @name, id: sfid, isMine: true})
     _gaq.push(['_trackEvent', 'Songs', 'Upload', @name])
     @set 'name', null
     @set 'artist', null
@@ -47,4 +48,7 @@ SF.UploadController = Ember.ObjectController.extend
     @set 'agreeToTerms', false
     @set 'genre', null
     @set 'currentUploadedFile', null 
-    this.transitionToRoute 'songs'   
+    this.transitionToRoute 'songs'
+
+SF.UploadConfirmationController = Ember.ObjectController.create
+  content: null

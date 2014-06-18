@@ -98,3 +98,12 @@ SF.UploadView = Ember.View.extend
       SF.loginController.set 'canUpload', false
       SF.loginController.set 'reviewsLeftBeforeUpload', (3 - (reviews.length % 3))
   ).observes('SF.loginController.content.reviews')
+
+SF.UploadConfirmationView = Ember.View.extend
+  classNames: ['upload-confirmation']
+  didContentChange: (->
+    unless SF.UploadConfirmationController.get('content') is null
+      @.$().show()
+    else
+      @.$().hide()
+  ).observes('SF.UploadConfirmationController.content')

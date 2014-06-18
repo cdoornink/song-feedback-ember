@@ -36,3 +36,20 @@
 </div>
 <div class="main">{{outlet}}</div>
 {{view SF.PlayerView}}
+
+{{#view SF.UploadConfirmationView contentBinding="SF.UploadConfirmationController"}}
+  <div class="modal">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" {{action 'closeUploadConfirmation'}}>&times;</button>
+      <h3>Upload Completed!</h3>
+    </div>
+    <div class="modal-body">
+      <p>Thanks for uploading "{{view.content.name}}" to Song Feedback! Now, speed up the process a bit by sharing your song with your social circles, so you can start getting some feedback right away.</p>
+      {{share-container item=view.content}}
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" {{action 'closeUploadConfirmation'}}>Close</a>
+    </div>
+  </div>
+{{/view}}
+  
