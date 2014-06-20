@@ -5,7 +5,7 @@ Ember.Handlebars.registerBoundHelper "mdy", (date) ->
   unless date is undefined then return moment(date).format('MMMM Do YYYY')
 
 Ember.Handlebars.registerBoundHelper "bargraph", (n) ->
-    new Handlebars.SafeString('<div class="bar" style="width: '+n*8+'%"></div>')
+    new Handlebars.SafeString('<div class="bar" style="height: '+n*10+'%"></div>')
 
 Ember.Handlebars.registerBoundHelper "minibar", (n) ->
     new Handlebars.SafeString('<div class="score"><div class="minibar" style="height: '+n*10+'%"></div></div>')
